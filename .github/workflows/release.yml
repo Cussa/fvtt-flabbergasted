@@ -25,6 +25,15 @@ jobs:
         download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip
         flags: "{}"
 
+    - name: Create destination directory for compiled CSS
+      run: mkdir -vp ./css
+  
+    - name: Compile CSS from SCSS files
+      uses: gha-utilities/sass-build@v0.6.0
+      with:
+        source: ./scss/${{ env.package_id }}.scss
+        destination: ./css/${{ env.package_id }}.css
+
     # - name: Install Foundry VTT Cli and pack the source
     #   run: |
     #     npm install @foundryvtt/foundryvtt-cli --save-dev
