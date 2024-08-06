@@ -109,7 +109,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
     // Initialize containers.
     const gear = [];
     const features = [];
-    const sceneCues = [];
+    let sceneCues = [];
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
@@ -138,6 +138,18 @@ export class FlabbergastedActorSheet extends ActorSheet {
         sceneCues.push(i);
       }
     }
+
+    sceneCues = sceneCues
+      .sort((a, b) => {
+        let aValue = 0;
+        let bValue = 0;
+        if (a.system.availableUsage > 0)
+          aValue = 1;
+        if (b.system.availableUsage > 0)
+          bValue = 1;
+
+        return bValue - aValue || a.name.localeCompare(b.name);
+      });
 
     // Assign and return
     context.gear = gear;
