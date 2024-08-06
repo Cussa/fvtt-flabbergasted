@@ -2,6 +2,7 @@ import {
   onManageActiveEffect,
   prepareActiveEffectCategories,
 } from '../helpers/effects.mjs';
+import { rollTemplate } from '../helpers/templates.mjs';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -401,8 +402,42 @@ export class FlabbergastedActorSheet extends ActorSheet {
       return this.actor.update({ [field]: (value + 1 <= max) ? value + 1 : value });
     }
     else {
-      console.log("Prepare roll");
+      return await this._rollTrait(element.dataset.trait);
     }
+  }
+
+  async _rollTrait(trait) {
+    console.log(trait);
+    let formula = `${this.actor.system.traits[trait]}d6cs>=5`;
+
+    let roll = await new Roll(formula).roll();
+    let traitKey = `FLABBERGASTED.Traits.${trait[0].toUpperCase() + trait.slice(1)}`;
+    let content = `<h2>${game.i18n.localize(traitKey)}</h2>`;
+    let totalText = "";
+    switch (roll.total) {
+      case 0:
+        totalText = "(Fail)"
+        break;
+      case 1:
+        totalText = "Success"
+        break;
+      default:
+        totalText = "Successes"
+        break;
+    }
+
+    const chatContent = await renderTemplate(rollTemplate, {
+      flavor: content,
+      formula: roll.formula,
+      tooltip: await roll.getTooltip(),
+      total: `${roll.total}`,
+      totalText: totalText,
+      totalClass: roll.total > 0 ? "success" : "failure"
+    })
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: chatContent
+    });
   }
 
   async _onStatusClick(event) {

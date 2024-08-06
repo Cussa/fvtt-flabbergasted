@@ -15,3 +15,5 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/flabbergasted/templates/item/parts/item-effects.hbs',
   ]);
 };
+
+export const rollTemplate = "systems/flabbergasted/templates/chat/roll.hbs";
