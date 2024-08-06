@@ -177,17 +177,6 @@ export class FlabbergastedActorSheet extends ActorSheet {
           i.usages.push(usage);
         }
         i.canUse = i.system.availableUsage > 0 && i.system.used < i.system.availableUsage;
-        switch (i.system.socialStanding) {
-          case -1:
-            i.socialStandingChange = "Dignity";
-            break;
-          case 1:
-            i.socialStandingChange = "Scandal";
-            break;
-          default:
-            i.socialStandingChange = "";
-        }
-
         sceneCues.push(i);
       }
     }
@@ -433,7 +422,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
       total: `${roll.total}`,
       totalText: totalText,
       totalClass: roll.total > 0 ? "success" : "failure"
-    })
+    });
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       content: chatContent

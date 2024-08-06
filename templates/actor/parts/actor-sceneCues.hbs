@@ -37,8 +37,8 @@
     {{item.name}}
     {{#each item.usages as |usage|}}<input type="checkbox" name="cb" class="scene-cue {{usage.disabled}}"
       {{usage.checked}} disabled>{{/each}}
-    {{#if item.socialStandingChange}}<div style="float:right; font-size: 60%; margin-top:10px">[
-      <strong>+{{item.socialStandingChange}}</strong> ]
+    {{#if item.system.socialStanding}}<div style="float:right; font-size: 60%; margin-top:10px">[
+      <strong>+{{localize (concat "FLABBERGASTED.Item.SceneCue.SocialStandingChange." item.system.socialStanding)}}</strong> ]
     </div>{{/if}}
   </h2>
   {{{item.system.description}}}

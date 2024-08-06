@@ -1,5 +1,6 @@
 import FlabbergastedItemBase from "./item-base.mjs";
 import { DATA_COMMON } from "./common.mjs";
+import { sceneCueTemplate } from "../helpers/templates.mjs";
 
 export default class FlabbergastedSceneCue extends FlabbergastedItemBase {
 
@@ -47,16 +48,23 @@ export default class FlabbergastedSceneCue extends FlabbergastedItemBase {
     const speaker = ChatMessage.getSpeaker({ actor: actor });
     const rollMode = game.settings.get('core', 'rollMode');
 
-    const label = `[Scene Cue] ${item.name}`;
-
     await item.update({ "system.used": this.used + 1 });
-    if (this.socialStanding != 0)
-      await actor.update({ "system.socialStanding": Math.min(Math.max(actor.system.socialStanding + this.socialStanding, -10), 10) });
+    let newSocialStanding = null;
+    if (this.socialStanding != 0) {
+      newSocialStanding = Math.min(Math.max(actor.system.socialStanding + this.socialStanding, -10), 10);
+      await actor.update({ "system.socialStanding": newSocialStanding });
+    }
+
+    const content = await renderTemplate(sceneCueTemplate, {
+      sceneCue: item,
+      newSocialStanding
+    });
+
     await ChatMessage.create({
       speaker: speaker,
       rollMode: rollMode,
-      flavor: label,
-      content: this.description ?? '',
+      // flavor: content,
+      content: content,
     });
     console.log(actor.system.socialStanding);
   }

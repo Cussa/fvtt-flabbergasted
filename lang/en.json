@@ -14,6 +14,10 @@
       "SceneCue": {
         "SceneCue": "Scene Cue",
         "SocialStanding": "Social Standing",
+        "SocialStandingChange": {
+          "-1": "Dignity",
+          "1": "Scandal"
+        },
         "MaxUsage": "Max Usages",
         "AvailableUsage": "Available Usages",
         "Used": "Used",
