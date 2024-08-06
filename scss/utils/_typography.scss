@@ -1,5 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+@font-face {
+  font-family: "Averia";
+  font-weight: bold;
+  src: url(../fonts/AveriaGruesaLibre-Regular.ttf);
+}
 
-$font-title: "EB Garamond";
+@font-face {
+  font-family: "EB Garamond";
+  src: url(../fonts/EBGaramond-VariableFont_wght.ttf);
+  font-weight: 400 800;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url(../fonts/EBGaramond-Italic-VariableFont_wght.ttf);
+  font-weight: 400 800;
+  font-style: italic;
+}
+
+$font-title: "Averia";
 $font-primary: 'EB Garamond', sans-serif;
 $font-secondary: 'Roboto', sans-serif;
