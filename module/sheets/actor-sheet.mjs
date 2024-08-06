@@ -56,48 +56,6 @@ export class FlabbergastedActorSheet extends ActorSheet {
       this._prepareCharacterData(context);
     }
 
-    // Prepare NPC data and items.
-    if (actorData.type == 'npc') {
-      this._prepareItems(context);
-    }
-
-    // Enrich biography info for display
-    // Enrichment turns text like `[[/r 1d20]]` into buttons
-    const rollData = this.actor.getRollData();
-    context.enrichedDescription = await TextEditor.enrichHTML(
-      this.actor.system.description,
-      {
-        // Whether to show secret blocks in the finished html
-        secrets: this.document.isOwner,
-        // Necessary in v11, can be removed in v12
-        async: true,
-        // Data to fill in for inline rolls
-        rollData: rollData,
-        // Relative UUID resolution
-        relativeTo: this.actor,
-      }
-    );
-    context.enrichedBackground = await TextEditor.enrichHTML(
-      this.actor.system.background,
-      {
-        // Whether to show secret blocks in the finished html
-        secrets: this.document.isOwner,
-        // Necessary in v11, can be removed in v12
-        async: true,
-        // Data to fill in for inline rolls
-        rollData: rollData,
-        // Relative UUID resolution
-        relativeTo: this.actor,
-      }
-    );
-
-    // Prepare active effects
-    context.effects = prepareActiveEffectCategories(
-      // A generator that returns all effects stored on the actor
-      // as well as any items
-      this.actor.allApplicableEffects()
-    );
-
     return context;
   }
 
