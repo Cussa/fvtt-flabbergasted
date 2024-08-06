@@ -50,14 +50,23 @@ export default class FlabbergastedSceneCue extends FlabbergastedItemBase {
 
     await item.update({ "system.used": this.used + 1 });
     let newSocialStanding = null;
+    let socialStandingText = null;
     if (this.socialStanding != 0) {
       newSocialStanding = Math.min(Math.max(actor.system.socialStanding + this.socialStanding, -10), 10);
       await actor.update({ "system.socialStanding": newSocialStanding });
+
+      socialStandingText = 0;
+      if (newSocialStanding < 0)
+        socialStandingText = -1;
+      else if (newSocialStanding > 0)
+        socialStandingText = 1;
+      socialStandingText = game.i18n.localize(`FLABBERGASTED.Item.SceneCue.SocialStandingChange.${socialStandingText}`);
     }
 
     const content = await renderTemplate(sceneCueTemplate, {
       sceneCue: item,
-      newSocialStanding
+      newSocialStanding: Math.abs(newSocialStanding),
+      socialStandingText
     });
 
     await ChatMessage.create({

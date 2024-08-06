@@ -1,8 +1,10 @@
 <div class="flabbergasted-core">
   <h3>{{sceneCue.name}}</h3>
-  {{#if newSocialStanding}}
+  {{#if socialStandingText}}
   <h4>[+ {{localize (concat "FLABBERGASTED.Item.SceneCue.SocialStandingChange." sceneCue.system.socialStanding)}}]</h4>
-  <p><em>{{localize "FLABBERGASTED.Item.SceneCue.SocialStanding"}}: {{newSocialStanding}}</em></p>
+  <p>
+    <em>{{localize "FLABBERGASTED.Item.SceneCue.SocialStanding"}}: {{socialStandingText}} {{newSocialStanding}}</em>
+  </p>
   {{/if}}
   {{{sceneCue.system.description}}}
 </div>

@@ -16,6 +16,7 @@
         "SocialStanding": "Social Standing",
         "SocialStandingChange": {
           "-1": "Dignity",
+          "0": "Neutral",
           "1": "Scandal"
         },
         "MaxUsage": "Max Usages",
