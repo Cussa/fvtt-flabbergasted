@@ -233,6 +233,8 @@ export class FlabbergastedActorSheet extends ActorSheet {
     // Rollable abilities.
     html.on('click', '.rollable', this._onRoll.bind(this));
     html.on('click', '.rollable.trait', this._onTraitClick.bind(this));
+    html.on('click', '.rollable.status', this._onStatusClick.bind(this));
+    html.on('click', '.rollable.luck-coin', this._onLuckCoinClick.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -400,5 +402,27 @@ export class FlabbergastedActorSheet extends ActorSheet {
     else {
       console.log("Prepare roll");
     }
+  }
+
+  async _onStatusClick(event) {
+    event.preventDefault();
+    let value = 0;
+    if (event.altKey)
+      value = -1;
+    else if (event.shiftKey)
+      value = 1;
+    const newValue = this.actor.system.status + value;
+    await this.actor.update({ "system.status": Math.max(1, Math.min(3, newValue)) });
+  }
+
+  async _onLuckCoinClick(event) {
+    event.preventDefault();
+    let value = 0;
+    if (event.altKey)
+      value = -1;
+    else if (event.shiftKey)
+      value = 1;
+    const newValue = this.actor.system.luckCoin + value;
+    await this.actor.update({ "system.luckCoin": Math.max(0, Math.min(3, newValue)) });
   }
 }

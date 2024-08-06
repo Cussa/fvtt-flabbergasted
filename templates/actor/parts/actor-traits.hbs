@@ -6,12 +6,46 @@
   <div class="values">
     {{#each traits as |item id|}}
     <div class="trait" data-item-id="{{item.id}}">
-      <h2 class="rollable trait" data-field="system.traits.{{item.id}}" data-action-value="{{item.value}}"
+      <h3 class="rollable trait" data-field="system.traits.{{item.id}}" data-action-value="{{item.value}}"
         data-action-max-value="{{item.max}}">
         {{localize item.label}}
-      </h2>
+      </h3>
       {{{traitBoxes item.max item.value}}}
     </div>
     {{/each}}
+  </div>
+</div>
+<div class="grid grid-2column">
+  <div class="status">
+    <div class="info">
+      <label class="resource-label">Status</label>
+    </div>
+    <hr>
+    <div class="values">
+      <h3 class="rollable status">Healthy<input type="checkbox" name="cb" class="traits" {{ifThen (gte
+          actor.system.status 1) "checked" "" }} disabled>
+      </h3>
+      <h3 class="rollable status">Scuffed<input type="checkbox" name="cb" class="traits" {{ifThen (gte
+          actor.system.status 2) "checked" "" }} disabled>
+      </h3>
+      <h3 class="rollable status">Injured<input type="checkbox" name="cb" class="traits" {{ifThen (gte
+          actor.system.status 3) "checked" "" }} disabled>
+      </h3>
+    </div>
+  </div>
+  <div class="luck-coin">
+    <div class="info">
+      <label class="resource-label">Lucky Coin</label>
+    </div>
+    <hr>
+    <div class="values">
+      <img src="" class="rollable luck-coin" />
+      <h3><input type="checkbox" name="cb" class="traits" {{ifThen (gte actor.system.luckCoin 1) "checked" "" }}
+          disabled></h3>
+      <h3><input type="checkbox" name="cb" class="traits" {{ifThen (gte actor.system.luckCoin 2) "checked" "" }}
+          disabled></h3>
+      <h3><input type="checkbox" name="cb" class="traits" {{ifThen (gte actor.system.luckCoin 3) "checked" "" }}
+          disabled></h3>
+    </div>
   </div>
 </div>
