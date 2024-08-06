@@ -1,0 +1,17 @@
+<div class="traits">
+  <div class="info">
+    <label for="system.title" class="resource-label">Traits</label>
+  </div>
+  <hr>
+  <div class="values">
+    {{#each traits as |item id|}}
+    <div class="trait" data-item-id="{{item.id}}">
+      <h2 class="rollable trait" data-field="system.traits.{{item.id}}" data-action-value="{{item.value}}"
+        data-action-max-value="{{item.max}}">
+        {{localize item.label}}
+      </h2>
+      {{{traitBoxes item.max item.value}}}
+    </div>
+    {{/each}}
+  </div>
+</div>

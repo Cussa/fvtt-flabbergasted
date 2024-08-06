@@ -9,6 +9,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/flabbergasted/templates/actor/parts/actor-features.hbs',
     'systems/flabbergasted/templates/actor/parts/actor-items.hbs',
     'systems/flabbergasted/templates/actor/parts/actor-sceneCues.hbs',
+    'systems/flabbergasted/templates/actor/parts/actor-traits.hbs',
     'systems/flabbergasted/templates/actor/parts/actor-effects.hbs',
     // Item partials
     'systems/flabbergasted/templates/item/parts/item-effects.hbs',

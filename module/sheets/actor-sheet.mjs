@@ -128,6 +128,17 @@ export class FlabbergastedActorSheet extends ActorSheet {
 
       context.socialStandingValues.push("");
     }
+
+    context.traits = [];
+    for (const trait of Object.keys(CONFIG.FLABBERGASTED.traits)) {
+      const t = {
+        id: trait,
+        label: CONFIG.FLABBERGASTED.traits[trait],
+        value: this.actor.system.traits[trait],
+        max: 4 //TODO: check if Club has upgrade
+      };
+      context.traits.push(t);
+    }
   }
 
   /**
@@ -221,6 +232,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
 
     // Rollable abilities.
     html.on('click', '.rollable', this._onRoll.bind(this));
+    html.on('click', '.rollable.trait', this._onTraitClick.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -370,5 +382,23 @@ export class FlabbergastedActorSheet extends ActorSheet {
     let newSocialStanding = this.actor.system.socialStanding + increase;
     newSocialStanding = Math.max(-10, Math.min(10, newSocialStanding));
     await this.actor.update({ "system.socialStanding": newSocialStanding });
+  }
+
+  async _onTraitClick(event) {
+    event.preventDefault();
+    let element = event.currentTarget;
+    let field = element.dataset.field;
+    let value = parseInt(element.dataset.actionValue ? element.dataset.actionValue : "0");
+
+    if (event.altKey) {
+      return this.actor.update({ [field]: (value - 1 >= 1) ? value - 1 : value });
+    }
+    else if (event.shiftKey) {
+      let max = parseInt(element.dataset.actionMaxValue);
+      return this.actor.update({ [field]: (value + 1 <= max) ? value + 1 : value });
+    }
+    else {
+      console.log("Prepare roll");
+    }
   }
 }

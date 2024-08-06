@@ -1,5 +1,7 @@
 input[type=checkbox] {
-  &.scene-cue {
+
+  &.scene-cue,
+  &.traits {
     font-size: 1.35em;
     --gray: #636e72;
     --very-light-gray: #eee;

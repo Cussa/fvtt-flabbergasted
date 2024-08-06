@@ -82,6 +82,17 @@ Handlebars.registerHelper('toLowerCase', function (str) {
   return str.toLowerCase();
 });
 
+Handlebars.registerHelper('traitBoxes', function (max, value) {
+  let accum = '';
+  for (let i = 1; i <= 8; ++i) {
+    const classDisabled = i > max ? "disabled" : "";
+    const checked = i <= value ? "checked" : "";
+    accum += `<input type="checkbox" name="cb" class="traits ${classDisabled}"
+      ${checked} disabled>`;
+  }
+  return accum;
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
