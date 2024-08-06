@@ -47,11 +47,9 @@
     </div>
     <div style="flex:6">
       <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="features">Features</a>
+        <a class="item" data-tab="features">Traits</a>
         <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="items">Items</a>
         <a class="item" data-tab="sceneCues">Scene Cues</a>
-        <a class="item" data-tab="effects">Effects</a>
       </nav>
 
       <section class="sheet-body">
@@ -63,26 +61,13 @@
 
         {{!-- Biography Tab --}}
         <div class="tab biography" data-group="primary" data-tab="description">
-          {{!-- Editors must receive enriched text data from getData to properly handle rolls --}}
-          {{!-- {{editor enrichedBiography target="system.biography" engine="prosemirror" button=true editable=editable}} --}}
           {{> "systems/flabbergasted/templates/actor/parts/actor-description.hbs"}}
         </div>
 
-        {{!-- Owned Items Tab --}}
-        <div class="tab items" data-group="primary" data-tab="items">
-          {{> "systems/flabbergasted/templates/actor/parts/actor-items.hbs"}}
-        </div>
-
-        {{!-- Owned Spells Tab --}}
+        {{!-- Owned Scene Cues Tab --}}
         <div class="tab sceneCues" data-group="primary" data-tab="sceneCues">
           {{> "systems/flabbergasted/templates/actor/parts/actor-sceneCues.hbs"}}
         </div>
-
-        {{!-- Active Effects Tab --}}
-        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-          {{> "systems/flabbergasted/templates/actor/parts/actor-effects.hbs"}}
-        </div>
-
       </section>
     </div>
   </div>
@@ -96,50 +81,4 @@
     {{/each}}
     <p data-roll-type="scandal" class="rollable">Scandal</p>
   </div>
-
-  {{!-- Sheet Header --}}
-  {{!-- <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
-    <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
-      <div class="resources grid grid-3col">
-
-        <div class="resource flex-group-center">
-          <label for="system.health.value" class="resource-label">Health</label>
-          <div class="resource-content flexrow flex-center flex-between">
-            <input type="text" name="system.health.value" value="{{system.health.value}}" data-dtype="Number" />
-            <span> / </span>
-            <input type="text" name="system.health.max" value="{{system.health.max}}" data-dtype="Number" />
-          </div>
-        </div>
-
-        <div class="resource flex-group-center">
-          <label for="system.power.value" class="resource-label">Power</label>
-          <div class="resource-content flexrow flex-center flex-between">
-            <input type="text" name="system.power.value" value="{{system.power.value}}" data-dtype="Number" />
-            <span> / </span>
-            <input type="text" name="system.power.max" value="{{system.power.max}}" data-dtype="Number" />
-          </div>
-        </div>
-
-        <div class="resource flex-group-center">
-          <label for="system.attributes.level.value" class="resource-label">Level</label>
-          <div class="resource-content flexrow flex-center flex-between">
-            <input type="text" name="system.attributes.level.value" value="{{system.attributes.level.value}}"
-              data-dtype="Number" />
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </header> --}}
-
-  {{!-- Sheet Tab Navigation --}}
-  {{!-- <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="features">Features</a>
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="items">Items</a>
-    <a class="item" data-tab="sceneCues">Scene Cues</a>
-    <a class="item" data-tab="effects">Effects</a>
-  </nav> --}}
 </form>
