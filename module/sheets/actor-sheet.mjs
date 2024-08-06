@@ -105,18 +105,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
     // Initialize containers.
     const gear = [];
     const features = [];
-    const spells = {
-      0: [],
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
-      6: [],
-      7: [],
-      8: [],
-      9: [],
-    };
+    const sceneCues = [];
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
@@ -130,17 +119,37 @@ export class FlabbergastedActorSheet extends ActorSheet {
         features.push(i);
       }
       // Append to spells.
-      else if (i.type === 'spell') {
-        if (i.system.spellLevel != undefined) {
-          spells[i.system.spellLevel].push(i);
+      else if (i.type === 'sceneCue') {
+        i.usages = [];
+        let available = false;
+        for (let index = 1; index <= i.system.maxUsage; index++) {
+          let usage = {
+            disabled: index <= i.system.availableUsage ? "" : "disabled",
+            checked: index > i.system.used ? "" : "checked"
+          };
+           
+          i.usages.push(usage);
         }
+        i.canUse = i.system.availableUsage > 0 && i.system.used < i.system.availableUsage;
+        switch (i.system.socialStanding) {
+          case -1:
+            i.socialStandingChange = "Dignity";
+            break;
+          case 1:
+            i.socialStandingChange = "Scandal";
+            break;
+          default:
+            i.socialStandingChange = "";
+        }
+
+        sceneCues.push(i);
       }
     }
 
     // Assign and return
     context.gear = gear;
     context.features = features;
-    context.spells = spells;
+    context.sceneCues = sceneCues;
   }
 
   /* -------------------------------------------- */
@@ -164,12 +173,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
     html.on('click', '.item-create', this._onItemCreate.bind(this));
 
     // Delete Inventory Item
-    html.on('click', '.item-delete', (ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.items.get(li.data('itemId'));
-      item.delete();
-      li.slideUp(200, () => this.render(false));
-    });
+    html.on('click', '.item-delete', this._onItemDelete.bind(this));
 
     // Active Effect management
     html.on('click', '.effect-control', (ev) => {
@@ -193,6 +197,9 @@ export class FlabbergastedActorSheet extends ActorSheet {
         li.addEventListener('dragstart', handler, false);
       });
     }
+
+    // Create context menu for items on both sheets
+    this._contextMenu(html);
   }
 
   /**
@@ -222,22 +229,37 @@ export class FlabbergastedActorSheet extends ActorSheet {
     return await Item.create(itemData, { parent: this.actor });
   }
 
+  async _onItemDelete(event) {
+    event.preventDefault();
+    const li = $(ev.currentTarget).parents('.item');
+    const item = this.actor.items.get(li.data('itemId'));
+    item.delete();
+    li.slideUp(200, () => this.render(false));
+  }
+
   /**
    * Handle clickable rolls.
    * @param {Event} event   The originating click event
    * @private
    */
-  _onRoll(event) {
+  async _onRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
 
     // Handle item rolls.
     if (dataset.rollType) {
+
+      const itemId = element.closest('.item').dataset.itemId;
+      const item = this.actor.items.get(itemId);
+      if (!item)
+        return;
+
       if (dataset.rollType == 'item') {
-        const itemId = element.closest('.item').dataset.itemId;
-        const item = this.actor.items.get(itemId);
-        if (item) return item.roll();
+        return item.roll();
+      }
+      if (dataset.rollType == 'scene-cue') {
+        return await item.system.roll(this.actor);
       }
     }
 
@@ -252,5 +274,54 @@ export class FlabbergastedActorSheet extends ActorSheet {
       });
       return roll;
     }
+
+    
   }
+
+  _contextMenu(html) {
+    ContextMenu.create(this, html, "div.scene-cue", this._getItemContextOptions());
+  }
+
+  _getItemContextOptions() {
+    const canEdit = function (tr) {
+      let result = false;
+      const itemId = tr.data("item-id");
+
+      if (game.user.isGM) {
+        result = true;
+      }
+      else {
+        result = this.actor.items.find(item => item._id === itemId)
+          ? true
+          : false;
+      }
+
+      return result;
+    };
+
+    return [
+      {
+        name: "SIDEBAR.Edit",
+        icon: '<i class="fas fa-edit"></i>',
+        condition: element => canEdit(element),
+        callback: element => {
+          const itemId = element.data("itemId");
+          const item = this.actor.items.get(itemId);
+          return item.sheet.render(true);
+        },
+      },
+      {
+        name: "SIDEBAR.Delete",
+        icon: '<i class="fas fa-trash"></i>',
+        condition: tr => canEdit(tr),
+        callback: element => {
+          const itemId = element.data("itemId");
+          const item = this.actor.items.get(itemId);
+          element.slideUp(200, () => this.render(false));
+          item.delete();
+        },
+      },
+    ];
+  }
+
 }

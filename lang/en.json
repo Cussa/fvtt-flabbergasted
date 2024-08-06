@@ -1,21 +1,24 @@
 {
   "FLABBERGASTED": {
-    "Ability": {
-      "Str": { "long": "Strength", "abbr": "str" },
-      "Con": { "long": "Constitution", "abbr": "con" },
-      "Dex": { "long": "Dexterity", "abbr": "dex" },
-      "Int": { "long": "Intelligence", "abbr": "int" },
-      "Wis": { "long": "Wisdom", "abbr": "wis" },
-      "Cha": { "long": "Charisma", "abbr": "cha" }
+    "Traits": {
+      "Bp": "Bravado & Persuasion",
+      "Ce": "Culture & Etiquette",
+      "Ws": "Wit & Sharp",
+      "Cp": "creativity & passion"
     },
     "SheetLabels": {
       "Actor": "Flabbergasted Actor Sheet",
       "Item": "Flabbergasted Item Sheet"
     },
     "Item": {
-      "Spell": {
-        "SpellLVL": "Level {level} Spells",
-        "AddLVL": "Add LVL {level}"
+      "SceneCue": {
+        "SceneCue": "Scene Cue",
+        "SocialStanding": "Social Standing",
+        "MaxUsage": "Max Usages",
+        "AvailableUsage": "Available Usages",
+        "Used": "Used",
+        "HasExtraItem": "Has Extra Items",
+        "Item": "Item {item}"
       }
     },
     "Effect": {
@@ -26,7 +29,6 @@
       "Inactive": "Inactive Effects"
     }
   },
-
   "TYPES": {
     "Actor": {
       "character": "Character",
@@ -35,7 +37,7 @@
     "Item": {
       "item": "Item",
       "feature": "Feature",
-      "spell": "Spell"
+      "sceneCue": "Scene Cue"
     }
   }
 }

@@ -11,4 +11,5 @@ export default class FlabbergastedItemBase extends FlabbergastedDataModel {
     return schema;
   }
 
+  async prepareData(context) { }
 }

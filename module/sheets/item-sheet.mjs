@@ -71,6 +71,8 @@ export class FlabbergastedItemSheet extends ItemSheet {
     // Prepare active effects for easier access
     context.effects = prepareActiveEffectCategories(this.item.effects);
 
+    this.item.system.prepareData(context);
+
     return context;
   }
 
