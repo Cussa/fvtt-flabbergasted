@@ -6,10 +6,10 @@
   <div class="values">
     {{#each traits as |item id|}}
     <div class="trait" data-item-id="{{item.id}}">
-      <h3 class="rollable trait" data-field="system.traits.{{item.id}}" data-action-value="{{item.value}}"
+      <h2 class="rollable trait" data-field="system.traits.{{item.id}}" data-action-value="{{item.value}}"
         data-action-max-value="{{item.max}}">
         {{localize item.label}}
-      </h3>
+      </h2>
       {{{traitBoxes item.max item.value}}}
     </div>
     {{/each}}
@@ -22,13 +22,13 @@
     </div>
     <hr>
     <div class="values">
-      <h3 class="rollable status">Healthy<input type="checkbox" name="cb" class="traits" {{ifThen (gte
+      <h3 class="rollable status">Healthy<input type="checkbox" name="cb" class="traits" {{ifThen (eq
           actor.system.status 1) "checked" "" }} disabled>
       </h3>
-      <h3 class="rollable status">Scuffed<input type="checkbox" name="cb" class="traits" {{ifThen (gte
+      <h3 class="rollable status">Scuffed<input type="checkbox" name="cb" class="traits" {{ifThen (eq
           actor.system.status 2) "checked" "" }} disabled>
       </h3>
-      <h3 class="rollable status">Injured<input type="checkbox" name="cb" class="traits" {{ifThen (gte
+      <h3 class="rollable status">Injured<input type="checkbox" name="cb" class="traits" {{ifThen (eq
           actor.system.status 3) "checked" "" }} disabled>
       </h3>
     </div>
@@ -46,6 +46,18 @@
           disabled></h3>
       <h3><input type="checkbox" name="cb" class="traits" {{ifThen (gte actor.system.luckCoin 3) "checked" "" }}
           disabled></h3>
+    </div>
+  </div>
+  <div class="square-box">
+    <div class="info">
+      <label for="system.readies" class="resource-label">Readies</label>
+      <input name="system.readies" type="text" value="{{actor.system.readies}}" placeholder="0" />
+    </div>
+  </div>
+  <div class="square-box">
+    <div class="info">
+      <label for="system.nickname" class="resource-label rollable nickname">Nickname</label>
+      <input name="system.nickname" type="text" value="{{actor.system.nickname}}" placeholder="Nickname" style="text-decoration: {{ifThen system.nicknameUsed "line-through" "none"}}" />
     </div>
   </div>
 </div>

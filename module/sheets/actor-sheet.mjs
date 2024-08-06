@@ -235,6 +235,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
     html.on('click', '.rollable.trait', this._onTraitClick.bind(this));
     html.on('click', '.rollable.status', this._onStatusClick.bind(this));
     html.on('click', '.rollable.luck-coin', this._onLuckCoinClick.bind(this));
+    html.on('click', '.rollable.nickname', this._onNicknameClick.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -424,5 +425,10 @@ export class FlabbergastedActorSheet extends ActorSheet {
       value = 1;
     const newValue = this.actor.system.luckCoin + value;
     await this.actor.update({ "system.luckCoin": Math.max(0, Math.min(3, newValue)) });
+  }
+
+  async _onNicknameClick(event) {
+    event.preventDefault();
+    await this.actor.update({ "system.nicknameUsed": !event.altKey });
   }
 }
