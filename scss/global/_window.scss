@@ -1,3 +1,9 @@
+body,
+button,
+#tooltip {
+  font-family: $font-primary;
+}
+
 .window-app {
   font-family: $font-primary;
 }
@@ -6,7 +12,7 @@
   &:hover,
   &:focus {
     color: #000;
-    text-shadow: 0 0 10px red;
+    text-shadow: 0 0 10px $focus;
     cursor: pointer;
   }
 }

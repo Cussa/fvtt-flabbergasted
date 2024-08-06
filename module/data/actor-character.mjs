@@ -19,9 +19,11 @@ export default class FlabbergastedCharacter extends FlabbergastedActorBase {
 
     schema.readies = new fields.NumberField({ ...DATA_COMMON.requiredInteger, initial: 0, min: 0 });
 
-    schema.relatioship = new fields.StringField({ required: true, blank: true });
+    schema.relationship = new fields.StringField({ required: true, blank: true });
 
     schema.archetype = new fields.StringField({ required: false, blank: true });
+
+    schema.hasProfession = new fields.BooleanField({ initial: true });
 
     schema.title = new fields.StringField({ required: false, blank: true });
     schema.estate = new fields.StringField({ required: false, blank: true });

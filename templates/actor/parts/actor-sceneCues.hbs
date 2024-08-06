@@ -33,23 +33,20 @@
 </ol> --}}
 {{#each sceneCues as |item id|}}
 <div class="scene-cue" data-item-id="{{item._id}}">
-  <h1 class="{{#if item.canUse}}rollable{{/if}} item" data-roll-type="scene-cue" data-item-id="{{item._id}}">
+  <h2 class="{{#if item.canUse}}rollable{{/if}} item" data-roll-type="scene-cue" data-item-id="{{item._id}}">
     {{item.name}}
     {{#each item.usages as |usage|}}<input type="checkbox" name="cb" class="scene-cue {{usage.disabled}}"
       {{usage.checked}} disabled>{{/each}}
     {{#if item.socialStandingChange}}<div style="float:right; font-size: 60%; margin-top:10px">[
       <strong>+{{item.socialStandingChange}}</strong> ]
     </div>{{/if}}
-  </h1>
+  </h2>
   {{{item.system.description}}}
   {{#if item.system.hasExtraItems}}
   <div class="grid grid-3col">
-    <input type='text' name='system.extraItem.item1' value='{{system.extraItem.item1}}' data-dtype='text' disabled
-      style="background: transparent; border-bottom: 1px solid black; text-align: center;" />
-    <input type='text' name='system.extraItem.item2' value='{{system.extraItem.item2}}' data-dtype='text' disabled
-      style="background: transparent; border-bottom: 1px solid black; text-align: center;" />
-    <input type='text' name='system.extraItem.item3' value='{{system.extraItem.item3}}' data-dtype='text' disabled
-      style="background: transparent; border-bottom: 1px solid black; text-align: center;" />
+    <input type='text' name='system.extraItem.item1' value='{{system.extraItem.item1}}' data-dtype='text' disabled/>
+    <input type='text' name='system.extraItem.item2' value='{{system.extraItem.item2}}' data-dtype='text' disabled/>
+    <input type='text' name='system.extraItem.item3' value='{{system.extraItem.item3}}' data-dtype='text' disabled/>
   </div>
   {{/if}}
 </div>

@@ -12,8 +12,8 @@ export class FlabbergastedActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['flabbergasted', 'sheet', 'actor'],
-      width: 600,
-      height: 600,
+      width: 800,
+      height: 660,
       tabs: [
         {
           navSelector: '.sheet-tabs',
@@ -94,6 +94,26 @@ export class FlabbergastedActorSheet extends ActorSheet {
   _prepareCharacterData(context) {
     // This is where you can enrich character-specific editor fields
     // or setup anything else that's specific to this type
+
+    context.socialStandingValues = [];
+    for (let index = -10; index <= 10; index++) {
+      if (index == 0) {
+        context.socialStandingValues.push(0);
+        continue;
+      }
+
+      if (index < 0 && context.system.socialStanding < 0 && index >= context.system.socialStanding) {
+        context.socialStandingValues.push(Math.abs(index));
+        continue;
+      }
+
+      if (index > 0 && context.system.socialStanding > 0 && index <= context.system.socialStanding) {
+        context.socialStandingValues.push(index);
+        continue;
+      }
+
+      context.socialStandingValues.push("");
+    }
   }
 
   /**
@@ -127,7 +147,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
             disabled: index <= i.system.availableUsage ? "" : "disabled",
             checked: index > i.system.used ? "" : "checked"
           };
-           
+
           i.usages.push(usage);
         }
         i.canUse = i.system.availableUsage > 0 && i.system.used < i.system.availableUsage;
@@ -250,6 +270,12 @@ export class FlabbergastedActorSheet extends ActorSheet {
     // Handle item rolls.
     if (dataset.rollType) {
 
+      if (dataset.rollType == "dignity")
+        return this._updateSocialStanding(true);
+
+      if (dataset.rollType == "scandal")
+        return this._updateSocialStanding(false);
+
       const itemId = element.closest('.item').dataset.itemId;
       const item = this.actor.items.get(itemId);
       if (!item)
@@ -261,6 +287,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
       if (dataset.rollType == 'scene-cue') {
         return await item.system.roll(this.actor);
       }
+
     }
 
     // Handle rolls that supply the formula directly.
@@ -275,7 +302,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
       return roll;
     }
 
-    
+
   }
 
   _contextMenu(html) {
@@ -324,4 +351,10 @@ export class FlabbergastedActorSheet extends ActorSheet {
     ];
   }
 
+  async _updateSocialStanding(increaseDignity) {
+    const increase = increaseDignity ? -1 : 1;
+    let newSocialStanding = this.actor.system.socialStanding + increase;
+    newSocialStanding = Math.max(-10, Math.min(10, newSocialStanding));
+    await this.actor.update({ "system.socialStanding": newSocialStanding });
+  }
 }
