@@ -10,7 +10,8 @@
   }
 }
 
-.sheet-header {
+.sheet-header,
+.middle {
   flex: 0 auto;
   overflow: hidden;
   display: flex;
@@ -21,7 +22,7 @@
 
   .profile-img {
     flex: 0 0 100px;
-    height: 100px;
+    height: 200px;
     margin-right: 10px;
   }
 
@@ -51,6 +52,7 @@
 // .sheet-body .tab,
 .sheet-body .tab .editor {
   height: 100%;
+  min-height: 30vh;
 }
 
 .tox {
@@ -82,10 +84,14 @@ input[type="search"]:focus {
   text-shadow: 0 0 10px $focus;
 }
 
-a:hover{
+a:hover {
   text-shadow: 0 0 8px $focus;
 }
 
 .middle {
   gap: 10px;
+}
+
+hr.vertical.profile {
+  display: none;
 }

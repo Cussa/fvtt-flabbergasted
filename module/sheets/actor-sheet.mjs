@@ -62,15 +62,29 @@ export class FlabbergastedActorSheet extends ActorSheet {
 
     // Enrich biography info for display
     // Enrichment turns text like `[[/r 1d20]]` into buttons
-    context.enrichedBiography = await TextEditor.enrichHTML(
-      this.actor.system.biography,
+    const rollData = this.actor.getRollData();
+    context.enrichedDescription = await TextEditor.enrichHTML(
+      this.actor.system.description,
       {
         // Whether to show secret blocks in the finished html
         secrets: this.document.isOwner,
         // Necessary in v11, can be removed in v12
         async: true,
         // Data to fill in for inline rolls
-        rollData: this.actor.getRollData(),
+        rollData: rollData,
+        // Relative UUID resolution
+        relativeTo: this.actor,
+      }
+    );
+    context.enrichedBackground = await TextEditor.enrichHTML(
+      this.actor.system.background,
+      {
+        // Whether to show secret blocks in the finished html
+        secrets: this.document.isOwner,
+        // Necessary in v11, can be removed in v12
+        async: true,
+        // Data to fill in for inline rolls
+        rollData: rollData,
         // Relative UUID resolution
         relativeTo: this.actor,
       }
