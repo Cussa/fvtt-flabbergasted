@@ -10,11 +10,9 @@
     font-size: 120%;
   }
 
-  .dice-roll {
-    .dice-flavor {
-      text-align: center;
-    }
-
-
+  h2 {
+    text-align: center;
+    font-family: $font-family-title;
+    font-variant: small-caps;
   }
 }
