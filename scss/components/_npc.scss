@@ -35,7 +35,7 @@
         width: 15px;
         height: 100%;
         margin: 0 -5px 0 0px;
-        transform: scaleX(0.5);
+        transform: scaleX(0.42);
       }
     }
   }
@@ -62,5 +62,9 @@
 
   .tab {
     padding: 0 10px;
+  }
+
+  .sheet-body .tab .editor {
+    min-height: 20vh;
   }
 }
