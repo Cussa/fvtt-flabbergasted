@@ -1,0 +1,200 @@
+.character,
+.npc {
+
+  hr {
+    @extend %hr;
+  }
+
+  div.middle {
+    gap: calc($default-margin-bottom / 2);
+
+    &>div:first-child {
+      @extend %border-with-rounded-corner;
+      display: flex;
+      flex-direction: column;
+
+      div.info {
+        @extend %info;
+      }
+
+      .profile {
+        overflow: hidden;
+        flex: 1 1 0;
+        align-content: center;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+          border: 0;
+        }
+      }
+    }
+
+    &>div:nth-child(2) {
+      nav {
+        margin-top: 0;
+      }
+
+      .sheet-body {
+        overflow-y: auto;
+        height: 520px;
+      }
+    }
+
+    div.sceneCues {
+      @extend %border-with-rounded-corner;
+      padding: 20px 10px;
+
+      div.scene-cue {
+
+
+        h2 {
+          font-family: $font-family-title;
+          text-transform: uppercase;
+        }
+
+        input[type=checkbox].scene-cue {
+          @extend %checkbox;
+        }
+
+        input[type=text] {
+          border-image-slice: 0 27 13 27;
+          border-image-width: 0px 20px 10px 20px;
+          border-image-outset: 0px 0px 0px 0px;
+          border-image-repeat: stretch stretch;
+          border-style: solid;
+          border-image-source: url(../assets//helpers/painted-horizontal-line.svg);
+
+          background: transparent;
+          text-align: center;
+        }
+      }
+    }
+
+    div.traits {
+      @extend %border-with-rounded-corner;
+
+      div.trait {
+        margin-bottom: $default-margin-bottom;
+
+        &:last-child {
+          margin-bottom: calc($default-margin-bottom / 3);
+        }
+      }
+
+      div.info {
+        @extend %info;
+
+        justify-content: center;
+      }
+
+      div.values {
+        padding: 5px 10px;
+
+        h3,
+        h2 {
+          text-transform: uppercase;
+          font-family: $font-family-title;
+          border-bottom: 0;
+          margin-bottom: 0;
+        }
+
+        input[type=checkbox].traits {
+          @extend %checkbox;
+        }
+      }
+    }
+
+    div.status,
+    div.luck-coin {
+      @extend %border-with-rounded-corner;
+
+      div.info {
+        @extend %info;
+        justify-content: center;
+      }
+
+      div.values {
+        padding: 5px 10px;
+
+        h3,
+        h2 {
+          text-transform: uppercase;
+          font-family: $font-family-title;
+          border-bottom: 0;
+          text-align: center;
+        }
+
+        input[type=checkbox].traits {
+          @extend %checkbox;
+        }
+
+        img.luck-coin {
+          content: url(../assets/helpers/coin.svg);
+          display: block;
+          float: right;
+          width: 40%;
+          border: 0;
+          margin-right: 30px;
+          margin-left: -20px;
+        }
+      }
+    }
+
+    div.square-box {
+      @extend %border-with-straight-corner;
+
+      div.info {
+        @extend %info;
+        padding: 7px;
+      }
+    }
+  }
+
+  div.rounded-corner {
+    @extend %border-with-rounded-corner;
+
+    div.info {
+      @extend %info;
+
+      justify-content: center;
+    }
+
+    div.editor {
+      min-height: 20vh !important;
+
+      .editor-content:not(.ProseMirror) {
+        padding: 0 10px;
+      }
+    }
+  }
+
+  div.socialStanding {
+
+    @extend %border-with-straight-corner;
+    background-color: transparent;
+    border-collapse: unset;
+
+    margin-top: calc($default-margin-bottom / 2);
+    font-family: $font-family-title;
+    text-transform: uppercase;
+    gap: 0;
+
+    p {
+      margin: 10px 0;
+      min-width: 15px;
+      text-align: center;
+    }
+
+    hr.vertical {
+      height: 33px;
+      margin: 3px 0px;
+
+      &.single {
+        background: url(../assets/helpers/vertical-single-divisor.svg) repeat-y 0 0;
+        background-size: cover;
+      }
+    }
+  }
+}

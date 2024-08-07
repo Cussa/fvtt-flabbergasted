@@ -1,8 +1,8 @@
 // Import utilities.
 @import 'utils/typography';
 @import 'utils/colors';
-@import 'utils/mixins';
 @import 'utils/variables';
+@import 'utils/mixins';
 
 /* Global styles */
 @import 'global/window';
@@ -17,4 +17,6 @@
   @import 'components/items';
   @import 'components/effects';
   @import 'components/checkbox';
+  @import 'components/pc';
+  @import 'components/npc';
 }

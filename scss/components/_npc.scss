@@ -1,0 +1,66 @@
+.npc {
+  border-image-slice: 27%;
+  border-image-width: 25px;
+  border-image-outset: 0px;
+  border-image-repeat: stretch stretch;
+  border-image-source: url(../assets/helpers/npc-card.svg);
+  border-style: solid;
+  padding: 2px;
+
+
+
+  .sheet-header {
+    margin-bottom: 0;
+  }
+
+  .profile-img {
+    // height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+  }
+
+  hr {
+    @extend %hr;
+
+    &.vertical {
+      height: 33px;
+      margin-bottom: -15px;
+
+      &.profile {
+        flex: none;
+        width: 15px;
+        height: 100%;
+        margin: 0 -5px 0 0px;
+        transform: scaleX(0.5);
+      }
+    }
+  }
+
+  div.info {
+    @extend %info;
+
+    &.last-line {
+      .age {
+        width: 15%;
+      }
+
+      .description {
+        width: 85%;
+      }
+    }
+
+  }
+
+  label.info {
+    @extend %labelInfo;
+    font-size: 120%;
+  }
+
+  .tab {
+    padding: 0 10px;
+  }
+}

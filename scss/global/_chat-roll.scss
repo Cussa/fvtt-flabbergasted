@@ -1,5 +1,20 @@
-.dice-roll {
-  .dice-flavor {
-    text-align: center;
+.chat-message {
+  @extend %border-with-straight-corner;
+
+  padding: 10px 10px;
+  background: unset;
+  background-color: white;
+  border-radius: 0;
+
+  .message-sender {
+    font-size: 120%;
+  }
+
+  .dice-roll {
+    .dice-flavor {
+      text-align: center;
+    }
+
+
   }
 }

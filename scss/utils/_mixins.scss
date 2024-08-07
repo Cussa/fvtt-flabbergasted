@@ -14,3 +14,109 @@
 @mixin hide {
   display: none;
 }
+
+%border-with-rounded-corner {
+  border-image-slice: 27%;
+  border-image-width: 25px;
+  border-image-outset: 0px 0px 0px 0px;
+  border-image-repeat: stretch stretch;
+  border-image-source: url(../assets/helpers/border-with-rounded-corner.svg);
+  border-style: solid;
+
+  padding: 10px 4px;
+}
+
+%border-with-straight-corner {
+  border-image-slice: 7% 7% 7% 7%;
+  border-image-width: 6px;
+  border-image-outset: 0px 0px 0px 0px;
+  border-image-repeat: stretch stretch;
+  border-image-source: url(../assets/helpers/border-with-straight-corner.svg);
+  border-style: solid;
+  padding: 0px 10px;
+}
+
+
+%labelInfo {
+
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-family: $font-family-title;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+%info {
+  font-size: 120%;
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+
+  label {
+    @extend %labelInfo;
+  }
+
+  input[type=text] {
+
+    background: transparent;
+    border: 0;
+    flex: 1;
+  }
+
+
+  &.last-line {
+
+    .age,
+    .flaw,
+    .description {
+      display: flex;
+      align-items: center;
+    }
+
+    .age {
+      width: 30%;
+    }
+
+    .flaw,
+    .description {
+      width: 70%;
+    }
+  }
+}
+
+%hr {
+  height: 6px;
+  background: url(../assets/helpers/horizontal-double-divisor.svg) repeat-x 0 0;
+  border: 0;
+  margin: 3px 0;
+
+  &.vertical {
+    background: url(../assets/helpers/vertical-double-divisor.svg) repeat-y 0 0;
+    height: calc(100% + 9px);
+    background-size: cover;
+    width: 6px;
+    margin: 0 5px;
+    margin-top: -16px;
+    margin-bottom: -19px;
+  }
+}
+
+%checkbox {
+  border: none;
+  background: none;
+  content: url(../assets/helpers/square-stroke.svg);
+
+  &.disabled {
+    content: url(../assets/helpers/square-dashed.svg);
+    border: none;
+    background: none;
+  }
+
+  &:checked {
+    content: url(../assets/helpers/square-filled.svg);
+    border: none;
+    background: none;
+  }
+}
