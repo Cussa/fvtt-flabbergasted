@@ -32,12 +32,37 @@
       "Temporary": "Temporary Effects",
       "Passive": "Passive Effects",
       "Inactive": "Inactive Effects"
+    },
+    "Common": {
+      "Description": "Description"
+    },
+    "SocialClub": {
+      "Name": "Club Name",
+      "Theme": "Theme",
+      "Information": "Information",
+      "Members": "Members",
+      "Upgrades": "Upgrades",
+      "BigTrouble": "Big Trouble",
+      "Location": "Location",
+      "RivalClubs": "Rival Clubs",
+      "PublicChallenges": "Public Challenges",
+      "Trophies": "Trophies",
+      "Slogan": "Slogan",
+      "Renown": "Club Renown",
+      "MemberRoles": "Member Roles",
+      "President": "Club President",
+      "VicePresident": "Vice President",
+      "Treasurer": "Treasurer",
+      "NotableMembers": "Notable Members",
+      "Funds": "Funds",
+      "NoOfMembers":"Nº of Members"
     }
   },
   "TYPES": {
     "Actor": {
       "character": "Character",
-      "npc": "NPC"
+      "npc": "NPC",
+      "socialClub": "Social Club"
     },
     "Item": {
       "item": "Item",

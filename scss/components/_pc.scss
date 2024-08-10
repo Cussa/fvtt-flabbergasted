@@ -1,5 +1,6 @@
 .character,
-.npc {
+.npc,
+.socialClub {
 
   hr {
     @extend %hr;
@@ -38,8 +39,12 @@
 
       .sheet-body {
         overflow-y: auto;
-        height: 520px;
+        height: 519px;
       }
+    }
+
+    .biography .rounded-corner:not(:last-child) {
+      margin-bottom: $default-margin-bottom;
     }
 
     div.sceneCues {
@@ -76,7 +81,7 @@
       @extend %border-with-rounded-corner;
 
       div.trait {
-        margin-bottom: $default-margin-bottom;
+        margin-bottom: calc($default-margin-bottom - 1px);
 
         &:last-child {
           margin-bottom: calc($default-margin-bottom / 3);
@@ -175,6 +180,10 @@
     @extend %border-with-straight-corner;
     background-color: transparent;
     border-collapse: unset;
+
+
+    display: flex;
+    justify-content: space-around;
 
     margin-top: calc($default-margin-bottom / 2);
     font-family: $font-family-title;

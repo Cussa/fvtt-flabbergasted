@@ -1,0 +1,51 @@
+
+<div class="grid grid-2column big-number">
+  <div class="status">
+    <div class="info">
+      <label class="resource-label">{{localize "FLABBERGASTED.SocialClub.Funds"}}</label>
+    </div>
+    <hr>
+    <input name="system.funds" type="text" value="{{actor.system.funds}}" placeholder="0" />
+  </div>
+  <div class="luck-coin">
+    <div class="info">
+      <label class="resource-label">{{localize "FLABBERGASTED.SocialClub.NoOfMembers"}}</label>
+    </div>
+    <hr>
+    <input name="system.members" type="text" value="{{actor.system.members}}" placeholder="0" />
+  </div>
+</div>
+<div class="member-roles">
+  <div class="info">
+    <label for="system.title" class="resource-label">{{localize "FLABBERGASTED.SocialClub.MemberRoles"}}</label>
+  </div>
+  <hr>
+  <div class="info">
+    <label for="system.roles.president" class="resource-label">{{localize
+      "FLABBERGASTED.SocialClub.President"}}</label><br>
+    <input name="system.roles.president" type="text" value="{{actor.system.roles.president}}" placeholder="Name" />
+  </div>
+  <div class="info">
+    <label for="system.roles.vice" class="resource-label">{{localize
+      "FLABBERGASTED.SocialClub.VicePresident"}}</label><br>
+    <input name="system.roles.vice" type="text" value="{{actor.system.roles.vice}}" placeholder="Name" />
+  </div>
+  <div class="info">
+    <label for="system.roles.treasurer" class="resource-label">{{localize
+      "FLABBERGASTED.SocialClub.Treasurer"}}</label><br>
+    <input name="system.roles.treasurer" type="text" value="{{actor.system.roles.treasurer}}" placeholder="Name" />
+  </div>
+  {{#each customRole as |role index|}}
+  <div class="info">
+    <label for="system.roles.treasurer" class="resource-label">{{role}}</label><br>
+    <input name="system.roles.treasurer" type="text" value="{{actor.system.roles.treasurer}}" placeholder="Name" />
+  </div>
+  {{/each}}
+</div>
+<div class="rounded-corner">
+  <div class="info">
+    <label for="system.slogan" class="resource-label">{{localize "FLABBERGASTED.SocialClub.NotableMembers"}}</label>
+  </div>
+  <hr>
+  {{editor system.notableMembers target="system.notableMembers" engine="prosemirror" button=true editable=editable}}
+</div>

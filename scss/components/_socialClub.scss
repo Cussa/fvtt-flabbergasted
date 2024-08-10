@@ -1,0 +1,79 @@
+div.club-renown {
+
+  @extend %border-with-straight-corner;
+  background-color: transparent;
+  border-collapse: unset;
+
+  display: flex;
+  justify-content: space-around;
+
+  margin-top: calc($default-margin-bottom / 2);
+  font-family: $font-family-title;
+  text-transform: uppercase;
+  gap: 0;
+
+  p {
+    margin: 10px 0;
+    min-width: 15px;
+    text-align: center;
+  }
+
+  hr.vertical {
+    height: 33px;
+    margin: 3px 0px;
+
+    &.single {
+      background: url(../assets/helpers/vertical-single-divisor.svg) repeat-y 0 0;
+      background-size: cover;
+    }
+  }
+}
+
+div.member-roles {
+  @extend %border-with-rounded-corner;
+
+  margin-bottom: $default-margin-bottom;
+  div.trait {
+    margin-bottom: calc($default-margin-bottom - 1px);
+
+    &:last-child {
+      margin-bottom: calc($default-margin-bottom / 3);
+    }
+  }
+
+  div.info {
+    @extend %info;
+
+    justify-content: center;
+  }
+
+  div.values {
+    padding: 5px 10px;
+
+    h3,
+    h2 {
+      text-transform: uppercase;
+      font-family: $font-family-title;
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    input[type=checkbox].traits {
+      @extend %checkbox;
+    }
+  }
+}
+
+div.big-number {
+  div input {
+
+    background: transparent;
+    border: 0;
+    flex: 1;
+    width: 70%;
+    margin: 0 15%;
+    font-size: 40px;
+    height: 40px;
+    text-align: center;
+  }
+}

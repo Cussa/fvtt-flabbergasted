@@ -55,6 +55,9 @@ export class FlabbergastedActorSheet extends ActorSheet {
       this._prepareItems(context);
       this._prepareCharacterData(context);
     }
+    else if (actorData.type == "socialClub") {
+      this._prepareSocialClubData(context);
+    }
 
     return context;
   }
@@ -155,6 +158,13 @@ export class FlabbergastedActorSheet extends ActorSheet {
     context.gear = gear;
     context.features = features;
     context.sceneCues = sceneCues;
+  }
+
+  async _prepareSocialClubData(context) {
+    context.renown = [];
+    for (let index = 1; index <= 15; index++) {
+      context.renown.push(context.system.renown >= index ? index : "");
+    }
   }
 
   /* -------------------------------------------- */
@@ -259,11 +269,18 @@ export class FlabbergastedActorSheet extends ActorSheet {
     // Handle item rolls.
     if (dataset.rollType) {
 
+      console.log(dataset);
       if (dataset.rollType == "dignity")
         return this._updateSocialStanding(true);
 
       if (dataset.rollType == "scandal")
         return this._updateSocialStanding(false);
+
+      if (dataset.rollType == "renown-minus")
+        return this._updateClubRenown(false);
+
+      if (dataset.rollType == "renown-plus")
+        return this._updateClubRenown(true);
 
       const itemId = element.closest('.item').dataset.itemId;
       const item = this.actor.items.get(itemId);
@@ -424,5 +441,12 @@ export class FlabbergastedActorSheet extends ActorSheet {
   async _onNicknameClick(event) {
     event.preventDefault();
     await this.actor.update({ "system.nicknameUsed": !event.altKey });
+  }
+
+  async _updateClubRenown(increase) {
+    increase = increase ? 1 : -1;
+    let newRenown = this.actor.system.renown + increase;
+    newRenown = Math.max(0, Math.min(15, newRenown));
+    await this.actor.update({ "system.renown": newRenown });
   }
 }

@@ -9,6 +9,9 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/flabbergasted/templates/actor/parts/actor-sceneCues.hbs',
     'systems/flabbergasted/templates/actor/parts/actor-traits.hbs',
     'systems/flabbergasted/templates/actor/parts/actor-description.hbs',
+    'systems/flabbergasted/templates/actor/parts/actor-socialClub-description.hbs',
+    'systems/flabbergasted/templates/actor/parts/actor-socialClub-members.hbs',
+    'systems/flabbergasted/templates/actor/parts/actor-socialClub-upgrades.hbs',
     // Item partials
     'systems/flabbergasted/templates/item/parts/item-effects.hbs',
   ]);

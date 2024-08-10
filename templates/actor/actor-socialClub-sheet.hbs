@@ -1,0 +1,60 @@
+<form class="{{cssClass}} {{actor.type}}" autocomplete="off">
+
+  <div class="middle flexrow">
+    <div style="flex:4">
+      <div class="info" style="display: block; text-align: center">
+        <label for="name" class="resource-label">{{localize "FLABBERGASTED.SocialClub.Name"}}</label><br>
+        <input name="name" type="text" value="{{actor.name}}" placeholder="Name" />
+      </div>
+      <hr>
+      <div class="profile">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      </div>
+      <hr>
+      <div class="info">
+        <label for="system.theme" class="resource-label">{{localize "FLABBERGASTED.SocialClub.Theme"}}</label>
+        <input name="system.theme" type="text" value="{{actor.system.theme}}" placeholder="Tea" />
+      </div>
+    </div>
+    <div style="flex:6">
+      <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">{{localize "FLABBERGASTED.SocialClub.Information"}}</a>
+        <a class="item" data-tab="membersTab">{{localize "FLABBERGASTED.SocialClub.Members"}}</a>
+        <a class="item" data-tab="upgradesTab">{{localize "FLABBERGASTED.SocialClub.Upgrades"}}</a>
+      </nav>
+
+      <section class="sheet-body">
+
+        <div class="tab membersTab" data-group="primary" data-tab="membersTab">
+          {{> "systems/flabbergasted/templates/actor/parts/actor-socialClub-members.hbs"}}
+
+        </div>
+
+        {{!-- Biography Tab --}}
+        <div class="tab biography" data-group="primary" data-tab="description">
+          {{> "systems/flabbergasted/templates/actor/parts/actor-socialClub-description.hbs"}}
+        </div>
+
+        {{!-- Owned Scene Cues Tab --}}
+        <div class="tab upgradesTab" data-group="primary" data-tab="upgradesTab">
+          {{> "systems/flabbergasted/templates/actor/parts/actor-socialClub-upgrades.hbs"}}
+        </div>
+      </section>
+    </div>
+  </div>
+  {{log this}}
+  <div class="club-renown">
+    <p>
+      <span data-roll-type="renown-minus" class="renown rollable">-</span>
+      {{localize "FLABBERGASTED.SocialClub.Renown"}}
+      <span data-roll-type="renown-plus" class="renown rollable">+</span>
+    </p>
+    <hr class="vertical">
+    {{#each renown as |value index|}}
+    <p>{{value}}</p>
+    {{#if (lt index 14)}}
+    <hr class="vertical single">
+    {{/if}}
+    {{/each}}
+  </div>
+</form>
