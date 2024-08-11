@@ -2,6 +2,7 @@ import {
   onManageActiveEffect,
   prepareActiveEffectCategories,
 } from '../helpers/effects.mjs';
+import { editMembersRoles, prepareMembersRolesData } from '../helpers/membersRoles.mjs';
 import { rollTemplate } from '../helpers/templates.mjs';
 
 /**
@@ -56,7 +57,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
       this._prepareCharacterData(context);
     }
     else if (actorData.type == "socialClub") {
-      this._prepareSocialClubData(context);
+      await this._prepareSocialClubData(context);
     }
 
     return context;
@@ -165,6 +166,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
     for (let index = 1; index <= 15; index++) {
       context.renown.push(context.system.renown >= index ? index : "");
     }
+    context.membersRoles = await prepareMembersRolesData(context);
   }
 
   /* -------------------------------------------- */
@@ -206,6 +208,8 @@ export class FlabbergastedActorSheet extends ActorSheet {
     html.on('click', '.rollable.status', this._onStatusClick.bind(this));
     html.on('click', '.rollable.luck-coin', this._onLuckCoinClick.bind(this));
     html.on('click', '.rollable.nickname', this._onNicknameClick.bind(this));
+    html.on('click', '.rollable.nickname', this._onNicknameClick.bind(this));
+    html.on('click', '.rollable.members-roles-edit', this._updateMemberRoles.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -448,5 +452,10 @@ export class FlabbergastedActorSheet extends ActorSheet {
     let newRenown = this.actor.system.renown + increase;
     newRenown = Math.max(0, Math.min(15, newRenown));
     await this.actor.update({ "system.renown": newRenown });
+  }
+
+  async _updateMemberRoles(event) {
+    event.preventDefault();
+    await editMembersRoles(this.actor);
   }
 }

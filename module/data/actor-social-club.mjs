@@ -13,6 +13,17 @@ export default class FlabbergastedSocialClub extends FlabbergastedDataModel {
     schema.rivalClubs = new fields.StringField({ required: true, blank: true });
 
     //TODO: member roles
+    schema.membersRoles = new fields.SchemaField({
+      roles: new fields.ArrayField(new fields.StringField({ required: true, blank: true }), {
+        initial: [
+          game.i18n.localize("FLABBERGASTED.SocialClub.President"),
+          game.i18n.localize("FLABBERGASTED.SocialClub.VicePresident"),
+          game.i18n.localize("FLABBERGASTED.SocialClub.Treasurer"),
+        ]
+      }),
+      memberId: new fields.ArrayField(new fields.StringField({ required: true, blank: true }))
+    });
+
     schema.slogan = new fields.StringField({ required: true, blank: true });
     schema.funds = new fields.NumberField({ ...DATA_COMMON.requiredInteger, initial: 0, min: 0 });
     schema.members = new fields.NumberField({ ...DATA_COMMON.requiredInteger, initial: 0, min: 0 });

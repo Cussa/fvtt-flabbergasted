@@ -1,0 +1,17 @@
+<div class="flabbergasted" style="background: white">
+  <div class="member-roles">
+    <div class="info">
+      <label for="system.title" class="resource-label">{{localize "FLABBERGASTED.SocialClub.MemberRoles"}}</label>
+    </div>
+    <hr>
+    {{log this}}
+    {{#each membersRoles as |memberRole index|}}
+    <div class="info">
+      <input for="system.membersRoles.roles.{{index}}" class="resource-label role-edit" value="{{memberRole.role}}" {{ifThen
+        editable "" "disabled" }}><br>
+      <input name="system.membersRoles.memberId.{{index}}" type="text" class="member-edit" value="{{memberRole.member.name}}"
+        placeholder="Name" />
+    </div>
+    {{/each}}
+  </div>
+</div>

@@ -55,7 +55,8 @@
       "Treasurer": "Treasurer",
       "NotableMembers": "Notable Members",
       "Funds": "Funds",
-      "NoOfMembers":"Nº of Members"
+      "NoOfMembers":"Nº of Members",
+      "EditMembersRoles":"Edit Members Roles"
     }
   },
   "TYPES": {

@@ -47,6 +47,10 @@ div.member-roles {
     justify-content: center;
   }
 
+  hr{
+    @extend %hr;
+  }
+
   div.values {
     padding: 5px 10px;
 

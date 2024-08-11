@@ -1,4 +1,3 @@
-
 <div class="grid grid-2column big-number">
   <div class="status">
     <div class="info">
@@ -17,28 +16,13 @@
 </div>
 <div class="member-roles">
   <div class="info">
-    <label for="system.title" class="resource-label">{{localize "FLABBERGASTED.SocialClub.MemberRoles"}}</label>
+    <label for="system.title" class="resource-label">{{localize "FLABBERGASTED.SocialClub.MemberRoles"}} <i class="fas fa-pen-to-square rollable members-roles-edit" style="margin-left: 10px;"></i> </label>
   </div>
   <hr>
+  {{#each membersRoles as |memberRole index|}}
   <div class="info">
-    <label for="system.roles.president" class="resource-label">{{localize
-      "FLABBERGASTED.SocialClub.President"}}</label><br>
-    <input name="system.roles.president" type="text" value="{{actor.system.roles.president}}" placeholder="Name" />
-  </div>
-  <div class="info">
-    <label for="system.roles.vice" class="resource-label">{{localize
-      "FLABBERGASTED.SocialClub.VicePresident"}}</label><br>
-    <input name="system.roles.vice" type="text" value="{{actor.system.roles.vice}}" placeholder="Name" />
-  </div>
-  <div class="info">
-    <label for="system.roles.treasurer" class="resource-label">{{localize
-      "FLABBERGASTED.SocialClub.Treasurer"}}</label><br>
-    <input name="system.roles.treasurer" type="text" value="{{actor.system.roles.treasurer}}" placeholder="Name" />
-  </div>
-  {{#each customRole as |role index|}}
-  <div class="info">
-    <label for="system.roles.treasurer" class="resource-label">{{role}}</label><br>
-    <input name="system.roles.treasurer" type="text" value="{{actor.system.roles.treasurer}}" placeholder="Name" />
+    <label for="system.membersRoles.roles.{{index}}" class="resource-label">{{memberRole.role}}</label><br>
+    <input name="system.membersRoles.memberId.{{index}}" type="text" value="{{memberRole.member.name}}" placeholder="Name" />
   </div>
   {{/each}}
 </div>
