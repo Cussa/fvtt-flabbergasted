@@ -10,7 +10,7 @@
     <div class="info">
       {{log memberRole}}
       {{#if memberRole.editable}}
-      <input type="text" class="role-edit" value="{{memberRole.role}}"  placeholder="Role">
+      <i class="fas fa-trash rollable member-role-remove"></i><input type="text" class="role-edit" value="{{memberRole.role}}"  placeholder="Role">
       {{else}}
       <label class="resource-label role-edit">{{memberRole.role}}</label>
       {{/if}}

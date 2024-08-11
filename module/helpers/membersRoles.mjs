@@ -23,11 +23,14 @@ export async function prepareMembersRolesData(socialClub) {
 
 async function _handleRender(html) {
   html.on("click", ".rollable.member-role-add", () => {
-    console.log("WORKED");
     let div = html.find(".member-roles")[0];
-    console.log(div);
-    const toInsert ='<div class="info"><input type="text" class="role-edit" placeholder="Role"><input type="text" class="member-edit" placeholder="Name" /></div>';
-    div.insertAdjacentHTML( 'beforeend', toInsert );
+    const toInsert = '<div class="info"><i class="fas fa-trash rollable member-role-remove"></i><input type="text" class="role-edit" placeholder="Role"><input type="text" class="member-edit" placeholder="Name" /></div>';
+    div.insertAdjacentHTML('beforeend', toInsert);
+  });
+  html.on("click", ".rollable.member-role-remove", (ev) => {
+    const target = ev.target;
+    const divParent = target.closest(".info");
+    divParent.remove();
   });
 }
 
