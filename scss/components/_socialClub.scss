@@ -33,6 +33,7 @@ div.member-roles {
   @extend %border-with-rounded-corner;
 
   margin-bottom: $default-margin-bottom;
+
   div.trait {
     margin-bottom: calc($default-margin-bottom - 1px);
 
@@ -45,9 +46,18 @@ div.member-roles {
     @extend %info;
 
     justify-content: center;
+
+    &.role {
+      justify-content: space-between;
+
+      label:last-child {
+        font-family: $font-primary;
+        text-transform: unset;
+      }
+    }
   }
 
-  hr{
+  hr {
     @extend %hr;
   }
 

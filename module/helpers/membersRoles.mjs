@@ -21,6 +21,16 @@ export async function prepareMembersRolesData(socialClub) {
   return membersRoles;
 }
 
+async function _handleRender(html) {
+  html.on("click", ".rollable.member-role-add", () => {
+    console.log("WORKED");
+    let div = html.find(".member-roles")[0];
+    console.log(div);
+    const toInsert ='<div class="info"><input type="text" class="role-edit" placeholder="Role"><input type="text" class="member-edit" placeholder="Name" /></div>';
+    div.insertAdjacentHTML( 'beforeend', toInsert );
+  });
+}
+
 export async function editMembersRoles(socialClub) {
   const membersRoles = await prepareMembersRolesData(socialClub);
 
@@ -28,7 +38,7 @@ export async function editMembersRoles(socialClub) {
     membersRoles: membersRoles
   });
 
-  await Dialog.wait(
+  await new Dialog(
     {
       title: game.i18n.localize("FLABBERGASTED.SocialClub.EditMembersRoles"),
       content: content,
@@ -43,7 +53,7 @@ export async function editMembersRoles(socialClub) {
             const roles = [];
             const members = [];
             for (let index = 0; index < rolesFields.length; index++) {
-              roles.push(rolesFields[index].value);
+              roles.push(rolesFields[index].value ?? rolesFields[index].textContent);
               members.push(membersFields[index].value);
             }
 
@@ -55,6 +65,7 @@ export async function editMembersRoles(socialClub) {
           label: game.i18n.localize("Cancel"),
         }
       },
-      default: "roll"
-    });
+      default: "save",
+      render: _handleRender
+    }).render(true);
 }

@@ -20,9 +20,9 @@
   </div>
   <hr>
   {{#each membersRoles as |memberRole index|}}
-  <div class="info">
-    <label for="system.membersRoles.roles.{{index}}" class="resource-label">{{memberRole.role}}</label><br>
-    <input name="system.membersRoles.memberId.{{index}}" type="text" value="{{memberRole.member.name}}" placeholder="Name" />
+  <div class="info role">
+    <label for="system.membersRoles.roles.{{index}}" class="resource-label">{{memberRole.role}}</label>
+    <label name="system.membersRoles.memberId.{{index}}">{{memberRole.member.name}}</label>
   </div>
   {{/each}}
 </div>

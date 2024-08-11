@@ -2,15 +2,19 @@
   <div class="member-roles">
     <div class="info">
       <label for="system.title" class="resource-label">{{localize "FLABBERGASTED.SocialClub.MemberRoles"}}</label>
+      <i class="fas fa-plus rollable member-role-add" style="margin-left: 10px;"></i>
     </div>
     <hr>
     {{log this}}
     {{#each membersRoles as |memberRole index|}}
     <div class="info">
-      <input for="system.membersRoles.roles.{{index}}" class="resource-label role-edit" value="{{memberRole.role}}" {{ifThen
-        editable "" "disabled" }}><br>
-      <input name="system.membersRoles.memberId.{{index}}" type="text" class="member-edit" value="{{memberRole.member.name}}"
-        placeholder="Name" />
+      {{log memberRole}}
+      {{#if memberRole.editable}}
+      <input type="text" class="role-edit" value="{{memberRole.role}}"  placeholder="Role">
+      {{else}}
+      <label class="resource-label role-edit">{{memberRole.role}}</label>
+      {{/if}}
+      <input type="text" class="member-edit" value="{{memberRole.member.name}}" placeholder="Name" />
     </div>
     {{/each}}
   </div>
