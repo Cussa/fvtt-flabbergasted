@@ -8,7 +8,6 @@ export default class FlabbergastedSceneCue extends FlabbergastedItemBase {
     const fields = foundry.data.fields;
     const schema = super.defineSchema();
 
-    schema.available = new fields.BooleanField({ initial: false });
     schema.socialStanding = new fields.NumberField({ ...DATA_COMMON.requiredInteger, initial: 0, min: -1, max: 1 });
     schema.maxUsage = new fields.NumberField({ ...DATA_COMMON.requiredInteger, initial: 0, min: 0, max: 3 });
     schema.availableUsage = new fields.NumberField({ ...DATA_COMMON.requiredInteger, initial: 0, min: 0, max: 3 });
