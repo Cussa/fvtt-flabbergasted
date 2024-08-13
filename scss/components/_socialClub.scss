@@ -91,3 +91,34 @@ div.big-number {
     text-align: center;
   }
 }
+
+div.upgradesTab {
+  @extend %border-with-rounded-corner;
+  padding: 20px 10px;
+
+  div.upgrade {
+
+
+    h2 {
+      font-family: $font-family-title;
+      text-transform: uppercase;
+      font-size: 18px;
+    }
+
+    input[type=checkbox].upgrade {
+      @extend %checkbox;
+    }
+
+    input[type=text] {
+      border-image-slice: 0 27 13 27;
+      border-image-width: 0px 20px 10px 20px;
+      border-image-outset: 0px 0px 0px 0px;
+      border-image-repeat: stretch stretch;
+      border-style: solid;
+      border-image-source: url(../assets//helpers/painted-horizontal-line.svg);
+
+      background: transparent;
+      text-align: center;
+    }
+  }
+}

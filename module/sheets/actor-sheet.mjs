@@ -129,7 +129,6 @@ export class FlabbergastedActorSheet extends ActorSheet {
       // Append to spells.
       else if (i.type === 'sceneCue') {
         i.usages = [];
-        let available = false;
         for (let index = 1; index <= i.system.maxUsage; index++) {
           let usage = {
             disabled: index <= i.system.availableUsage ? "" : "disabled",
@@ -165,6 +164,11 @@ export class FlabbergastedActorSheet extends ActorSheet {
     context.renown = [];
     for (let index = 1; index <= 15; index++) {
       context.renown.push(context.system.renown >= index ? index : "");
+    }
+    context.upgrades = [];
+    for (let i of context.items) {
+      i.canUse = i.system.hasUsage && !i.system.used;
+      context.upgrades.push(i);
     }
     context.membersRoles = await prepareMembersRolesData(context);
   }
@@ -294,7 +298,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
       if (dataset.rollType == 'item') {
         return item.roll();
       }
-      if (dataset.rollType == 'scene-cue') {
+      if (dataset.rollType == 'scene-cue' || dataset.rollType == "club-upgrade") {
         return await item.system.roll(this.actor);
       }
 
@@ -317,6 +321,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
 
   _contextMenu(html) {
     ContextMenu.create(this, html, "div.scene-cue", this._getItemContextOptions());
+    ContextMenu.create(this, html, "div.upgrade", this._getItemContextOptions());
   }
 
   _getItemContextOptions() {

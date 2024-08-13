@@ -19,4 +19,5 @@ export const preloadHandlebarsTemplates = async function () {
 
 export const rollTemplate = "systems/flabbergasted/templates/chat/roll.hbs";
 export const sceneCueTemplate = "systems/flabbergasted/templates/chat/scene-cue.hbs";
+export const clubUpgradeTemplate = "systems/flabbergasted/templates/chat/club-upgrade.hbs";
 export const memberRolesDialogTemplate = "systems/flabbergasted/templates/dialog/members-roles.hbs";

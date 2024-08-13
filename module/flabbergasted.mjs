@@ -50,7 +50,8 @@ Hooks.once('init', function () {
   CONFIG.Item.dataModels = {
     item: models.FlabbergastedItem,
     feature: models.FlabbergastedFeature,
-    sceneCue: models.FlabbergastedSceneCue
+    sceneCue: models.FlabbergastedSceneCue,
+    clubUpgrade: models.FlabbergastedClubUpgrade
   }
 
   // Active Effects are never copied to the Actor,

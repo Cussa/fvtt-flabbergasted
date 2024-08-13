@@ -34,7 +34,8 @@
       "Inactive": "Inactive Effects"
     },
     "Common": {
-      "Description": "Description"
+      "Description": "Description",
+      "Readies":"Readies"
     },
     "SocialClub": {
       "Name": "Club Name",
@@ -55,8 +56,13 @@
       "Treasurer": "Treasurer",
       "NotableMembers": "Notable Members",
       "Funds": "Funds",
-      "NoOfMembers":"Nº of Members",
-      "EditMembersRoles":"Edit Members Roles"
+      "NoOfMembers": "Nº of Members",
+      "EditMembersRoles": "Edit Members Roles",
+      "ClubUpgrade": {
+        "HasUsage": "Has Usage?",
+        "IsUsed": "Is Used?",
+        "ExtraRequirements": "Extra Requirements"
+      }
     }
   },
   "TYPES": {
@@ -68,7 +74,8 @@
     "Item": {
       "item": "Item",
       "feature": "Feature",
-      "sceneCue": "Scene Cue"
+      "sceneCue": "Scene Cue",
+      "clubUpgrade": "Club Upgrade"
     }
   }
 }
