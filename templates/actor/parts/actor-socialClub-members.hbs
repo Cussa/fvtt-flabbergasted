@@ -4,14 +4,14 @@
       <label class="resource-label">{{localize "FLABBERGASTED.SocialClub.Funds"}}</label>
     </div>
     <hr>
-    <input name="system.funds" type="text" value="{{actor.system.funds}}" placeholder="0" />
+    <input type='number' name='system.funds' value='{{actor.system.funds}}' data-dtype='Number' min="0"/>
   </div>
   <div class="luck-coin">
     <div class="info">
       <label class="resource-label">{{localize "FLABBERGASTED.SocialClub.NoOfMembers"}}</label>
     </div>
     <hr>
-    <input name="system.members" type="text" value="{{actor.system.members}}" placeholder="0" />
+    <input type='number' name='system.members' value='{{actor.system.members}}' data-dtype='Number' min="0" max="{{system.maxMembers}}"/>
   </div>
 </div>
 <div class="member-roles">

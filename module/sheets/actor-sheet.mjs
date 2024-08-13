@@ -171,6 +171,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
       context.upgrades.push(i);
     }
     context.membersRoles = await prepareMembersRolesData(context);
+    context.system.maxMembers = context.system.maxMembers || 50;
   }
 
   /* -------------------------------------------- */
