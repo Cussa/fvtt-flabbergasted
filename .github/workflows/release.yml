@@ -31,7 +31,7 @@ jobs:
     - name: Compile CSS from SCSS files
       uses: gha-utilities/sass-build@v0.6.0
       with:
-        source: ./src/scss/${{ env.package_id }}.scss
+        source: ./scss/${{ env.package_id }}.scss
         destination: ./css/${{ env.package_id }}.css
 
     # - name: Install Foundry VTT Cli and pack the source
