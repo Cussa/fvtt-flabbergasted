@@ -1,6 +1,7 @@
 {
   "id": "flabbergasted",
   "title": "Flabbergasted",
+  "version": "0.2.0",
   "description": "The Flabbergasted system for FoundryVTT!",
   "authors": [
     {
@@ -21,7 +22,6 @@
       "thumbnail": "systems/flabbergasted/assets/flabbergasted-system.webp"
     }
   ],
-  "version": "0.1.0",
   "compatibility": {
     "minimum": "11",
     "verified": "12"
