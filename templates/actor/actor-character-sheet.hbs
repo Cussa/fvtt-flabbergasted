@@ -2,6 +2,12 @@
 
   <div class="middle flexrow">
     <div style="flex:4">
+      {{#if system.archetype}}
+      <div class="info">
+        <label for="name" class="resource-label">{{system.archetype}}</label>
+      </div>
+      <hr>
+      {{/if}}
       <div class="info">
         <label for="name" class="resource-label">Name</label>
         <input name="name" type="text" value="{{actor.name}}" placeholder="Name" />

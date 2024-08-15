@@ -518,4 +518,47 @@ export class FlabbergastedActorSheet extends ActorSheet {
 
     return super._onDropItemCreate(itemData);
   }
+
+  async _onDropActor(event, data) {
+    if (!this.actor.isOwner) return false;
+
+    if (this.actor.type != "character")
+      return false;
+
+    const archetype = await fromUuid(data.uuid);
+    if (archetype.type != "archetype")
+      return false;
+
+    if (this.actor.system.archetype) {
+      const confirmation = await Dialog.confirm({
+        content: game.i18n.localize("FLABBERGASTED.CharacterArchetypeError")
+      });
+      if (!confirmation)
+        return;
+
+      let deleteItems = this.actor.items.map((i) => i.id);
+      this.actor.deleteEmbeddedDocuments("Item", deleteItems);
+    }
+
+    let updates = {
+      "system.archetype": archetype.name,
+      "system.readies": archetype.system.readies,
+      "system.hasProfession": archetype.system.hasProfession,
+      "system.profession": "",
+      "system.title": "",
+      "system.estate": "",
+    };
+
+    if (this.actor.img == "icons/svg/mystery-man.svg" || await Dialog.confirm({
+      content: game.i18n.localize("FLABBERGASTED.UpdateImageArchetype")
+    })) {
+      updates["img"] = archetype.img;
+      updates["prototypeToken.texture.src"] = archetype.img;
+    }
+
+    await this.actor.update(updates);
+
+    let items = await Promise.all(archetype.items.map(async (i) => (await fromUuid(i.uuid)).toObject()));
+    this.actor.createEmbeddedDocuments("Item", items);
+  }
 }

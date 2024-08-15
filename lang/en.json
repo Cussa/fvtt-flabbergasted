@@ -68,7 +68,9 @@
         "Renown": "Renown does not met the minimum Renown level for this upgrade.",
         "Funds": "Insufficient funds to purchase this upgrade."
       }
-    }
+    },
+    "CharacterArchetypeError": "This character already have a archetype. Do you want to continue? If yes, it will clear all the information from the character. This is a destructive operation and there is no return.",
+    "UpdateImageArchetype": "Do you want to update the character's image to the archetype's image?"
   },
   "TYPES": {
     "Actor": {
