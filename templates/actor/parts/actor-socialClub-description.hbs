@@ -40,7 +40,7 @@
   <hr>
   {{editor system.publicChallenges target="system.publicChallenges" engine="prosemirror" button=true editable=editable}}
 </div>
-
+{{#if system.hasTrophyRoom}}
 <div class="rounded-corner">
   <div class="info">
     <label for="system.trophies" class="resource-label">{{localize "FLABBERGASTED.SocialClub.Trophies"}}</label>
@@ -48,3 +48,4 @@
   <hr>
   {{editor system.trophies target="system.trophies" engine="prosemirror" button=true editable=editable}}
 </div>
+{{/if}}
