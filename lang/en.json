@@ -70,6 +70,7 @@
       }
     },
     "CharacterArchetypeError": "This character already have a archetype. Do you want to continue? If yes, it will clear all the information from the character. This is a destructive operation and there is no return.",
+    "CharacterSocialClubError": "This character already have a social club. Do you want to continue? If yes, it will clear all the information from the character. This is a destructive operation and there is no return.",
     "UpdateImageArchetype": "Do you want to update the character's image to the archetype's image?"
   },
   "TYPES": {

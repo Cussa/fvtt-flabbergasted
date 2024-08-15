@@ -51,7 +51,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
     // Prepare character data and items.
     if (actorData.type == 'character') {
       this._prepareItems(context);
-      this._prepareCharacterData(context);
+      await this._prepareCharacterData(context);
     }
     else if (actorData.type == "socialClub") {
       await this._prepareSocialClubData(context);
@@ -69,7 +69,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
    *
    * @param {object} context The context object to mutate
    */
-  _prepareCharacterData(context) {
+  async _prepareCharacterData(context) {
     // This is where you can enrich character-specific editor fields
     // or setup anything else that's specific to this type
 
@@ -94,12 +94,20 @@ export class FlabbergastedActorSheet extends ActorSheet {
     }
 
     context.traits = [];
+    context.socialClub = undefined;
+    if (context.system.socialClub) {
+      context.socialClub = await fromUuid(context.system.socialClub);
+    }
     for (const trait of Object.keys(CONFIG.FLABBERGASTED.traits)) {
+      let maxValue = 4;
+      if (context.socialClub?.system.traits) {
+        maxValue = context.socialClub?.system.traits[trait] ?? 4;
+      }
       const t = {
         id: trait,
         label: CONFIG.FLABBERGASTED.traits[trait],
         value: this.actor.system.traits[trait],
-        max: 4 //TODO: check if Club has upgrade
+        max: maxValue
       };
       context.traits.push(t);
     }
@@ -208,6 +216,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
     html.on('click', '.rollable.nickname', this._onNicknameClick.bind(this));
     html.on('click', '.rollable.nickname', this._onNicknameClick.bind(this));
     html.on('click', '.rollable.members-roles-edit', this._updateMemberRoles.bind(this));
+    html.on('click', '.rollable.socialClub', this._onDeleteSocialClub.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -530,10 +539,15 @@ export class FlabbergastedActorSheet extends ActorSheet {
     if (this.actor.type != "character")
       return false;
 
-    const archetype = await fromUuid(data.uuid);
-    if (archetype.type != "archetype")
-      return false;
+    const loadedActor = await fromUuid(data.uuid);
+    if (loadedActor.type == "archetype")
+      return await this._setArchetype(loadedActor);
 
+    if (loadedActor.type == "socialClub")
+      return await this._setSocialClub(loadedActor);
+  }
+
+  async _setArchetype(archetype) {
     if (this.actor.system.archetype) {
       const confirmation = await Dialog.confirm({
         content: game.i18n.localize("FLABBERGASTED.CharacterArchetypeError")
@@ -553,8 +567,13 @@ export class FlabbergastedActorSheet extends ActorSheet {
       "system.profession": "",
       "system.title": "",
       "system.estate": "",
-      [`system.traits.${archetype.system.primaryTrait}`]: 2,
+      "system.traits.bp": 1,
+      "system.traits.ce": 1,
+      "system.traits.ws": 1,
+      "system.traits.cp": 1,
     };
+
+    updates[`system.traits.${archetype.system.primaryTrait}`] = 2;
 
     if (this.actor.img == "icons/svg/mystery-man.svg" || await Dialog.confirm({
       content: game.i18n.localize("FLABBERGASTED.UpdateImageArchetype")
@@ -567,5 +586,26 @@ export class FlabbergastedActorSheet extends ActorSheet {
 
     let items = await Promise.all(archetype.items.map(async (i) => (await fromUuid(i.uuid)).toObject()));
     this.actor.createEmbeddedDocuments("Item", items);
+  }
+
+  async _setSocialClub(socialClub) {
+    if (this.actor.system.socialClub) {
+      const confirmation = await Dialog.confirm({
+        content: game.i18n.localize("FLABBERGASTED.CharacterSocialClubError")
+      });
+      if (!confirmation)
+        return;
+    }
+
+    let updates = {
+      "system.socialClub": socialClub.uuid
+    };
+    await this.actor.update(updates);
+  }
+
+  async _onDeleteSocialClub(event) {
+    event.preventDefault();
+    await this.actor.update({ "system.socialClub": null });
+    console.log(this.actor);
   }
 }

@@ -8,6 +8,15 @@
       </div>
       <hr>
       {{/if}}
+      {{#if system.socialClub}}
+      <div class="info">
+        <label for="socialClub" class="resource-label">{{socialClub.name}}</label>
+        <a class='rollable socialClub' title='{{localize "DOCUMENT.Delete" type='Social Club'}}'>
+          <i class='fas fa-trash'></i>
+        </a>
+      </div>
+      <hr>
+      {{/if}}
       <div class="info">
         <label for="name" class="resource-label">Name</label>
         <input name="name" type="text" value="{{actor.name}}" placeholder="Name" />

@@ -42,7 +42,7 @@ export default class FlabbergastedCharacter extends FlabbergastedActorBase {
 
     schema.notes = new fields.StringField({ required: true, blank: true });
 
-    schema.socialClub = new fields.StringField({ required: false, blank: false });
+    schema.socialClub = new fields.StringField({ required: false, blank: true, nullable: true });
 
     return schema;
   }
