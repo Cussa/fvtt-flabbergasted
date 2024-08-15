@@ -1,7 +1,4 @@
-import {
-  onManageActiveEffect,
-  prepareActiveEffectCategories,
-} from '../helpers/effects.mjs';
+import { onManageActiveEffect } from '../helpers/effects.mjs';
 import { editMembersRoles, prepareMembersRolesData } from '../helpers/membersRoles.mjs';
 import { clubUpgradeTemplate, rollTemplate } from '../helpers/templates.mjs';
 
@@ -59,6 +56,10 @@ export class FlabbergastedActorSheet extends ActorSheet {
     else if (actorData.type == "socialClub") {
       await this._prepareSocialClubData(context);
     }
+    else if (actorData.type == "archetype") {
+      this._prepareItems(context);
+      await this.actor.system.prepareData(context);
+    }
 
     return context;
   }
@@ -111,8 +112,6 @@ export class FlabbergastedActorSheet extends ActorSheet {
    */
   _prepareItems(context) {
     // Initialize containers.
-    const gear = [];
-    const features = [];
     let sceneCues = [];
 
     // Iterate through items, allocating to containers
@@ -121,10 +120,6 @@ export class FlabbergastedActorSheet extends ActorSheet {
       // Append to gear.
       if (i.type === 'item') {
         gear.push(i);
-      }
-      // Append to features.
-      else if (i.type === 'feature') {
-        features.push(i);
       }
       // Append to spells.
       else if (i.type === 'sceneCue') {
@@ -155,8 +150,6 @@ export class FlabbergastedActorSheet extends ActorSheet {
       });
 
     // Assign and return
-    context.gear = gear;
-    context.features = features;
     context.sceneCues = sceneCues;
   }
 
@@ -520,7 +513,9 @@ export class FlabbergastedActorSheet extends ActorSheet {
   }
 
   async _onDropItemCreateForCharacter(itemData) {
-    if (itemData.type != "sceneCue")
+    if (itemData.type != "sceneCue" && !Array.isArray(itemData))
       return;
+
+    return super._onDropItemCreate(itemData);
   }
 }

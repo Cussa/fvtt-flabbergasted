@@ -1,0 +1,51 @@
+{{log this}}
+<form class="{{cssClass}} {{actor.type}}" autocomplete="off">
+  <div class="middle flexrow">
+    <div style="flex:4">
+      <div class="info">
+        <label for="name" class="resource-label">Name</label>
+        <input name="name" type="text" value="{{actor.name}}" placeholder="Name" />
+      </div>
+      <hr>
+      <div class="profile">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      </div>
+      <hr>
+      
+      {{#if journal}}
+      <div class="info">
+        {{{journal}}}
+      </div>
+      <hr>
+      {{/if}}
+      <div class="info">
+        {{radioBoxes "system.hasProfession" hasProfessionOptions.choices checked=hasProfessionOptions.chosen
+        localize=true}}
+      </div>
+      <hr>
+      <div class="info">
+        <label for="system.primaryTrait" class="resource-label">Primary Trait</label>
+        <select name="system.primaryTrait">
+          {{selectOptions config.traits selected=actor.system.primaryTrait localize=true}}
+        </select>
+      </div>
+      <hr>
+      <div class="info">
+        <label for="system.readies" class="resource-label">Readies</label>
+        <input name="system.readies" type="text" value="{{actor.system.readies}}" placeholder="40" />
+      </div>
+    </div>
+    <div style="flex:6">
+      <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="sceneCues">Scene Cues</a>
+      </nav>
+
+      <section class="sheet-body">
+        {{!-- Owned Scene Cues Tab --}}
+        <div class="tab sceneCues" data-group="primary" data-tab="sceneCues">
+          {{> "systems/flabbergasted/templates/actor/parts/actor-sceneCues.hbs"}}
+        </div>
+      </section>
+    </div>
+  </div>
+</form>

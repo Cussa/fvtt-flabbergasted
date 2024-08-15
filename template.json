@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "npc", "socialClub"]
+    "types": ["character", "npc", "socialClub", "archetype"]
   },
   "Item": {
     "types": ["item", "feature", "sceneCue", "clubUpgrade"]

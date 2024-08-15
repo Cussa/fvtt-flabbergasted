@@ -44,7 +44,8 @@ Hooks.once('init', function () {
   CONFIG.Actor.dataModels = {
     character: models.FlabbergastedCharacter,
     npc: models.FlabbergastedNPC,
-    socialClub: models.FlabbergastedSocialClub
+    socialClub: models.FlabbergastedSocialClub,
+    archetype: models.FlabbergastedArchetype
   }
   CONFIG.Item.documentClass = FlabbergastedItem;
   CONFIG.Item.dataModels = {
