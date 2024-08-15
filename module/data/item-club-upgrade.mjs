@@ -8,7 +8,7 @@ export default class FlabbergastedClubUpgrade extends FlabbergastedItemBase {
     const fields = foundry.data.fields;
     const schema = super.defineSchema();
 
-    schema.minRenown = new fields.NumberField({ ...DATA_COMMON.requiredInteger, initial: 0, min: 1, max: 15 });
+    schema.minRenown = new fields.NumberField({ ...DATA_COMMON.requiredInteger, initial: 0, min: 0, max: 15 });
     schema.readies = new fields.NumberField({ ...DATA_COMMON.requiredInteger, initial: 0, min: 0, max: 1000 });
     schema.extraRequirement = new fields.StringField({ required: false, blank: true });
 
