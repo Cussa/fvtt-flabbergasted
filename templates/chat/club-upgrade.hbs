@@ -1,4 +1,7 @@
 <div class="flabbergasted">
+  {{#if acquired}}
+  <p class="centered"><strong>{{localize "FLABBERGASTED.SocialClub.NewUpgrade"}}</strong></p>
+  {{/if}}
   <h2>{{clubUpgrade.name}}</h2>
   {{{clubUpgrade.system.description}}}
 </div>

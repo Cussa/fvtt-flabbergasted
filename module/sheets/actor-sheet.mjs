@@ -3,7 +3,7 @@ import {
   prepareActiveEffectCategories,
 } from '../helpers/effects.mjs';
 import { editMembersRoles, prepareMembersRolesData } from '../helpers/membersRoles.mjs';
-import { rollTemplate } from '../helpers/templates.mjs';
+import { clubUpgradeTemplate, rollTemplate } from '../helpers/templates.mjs';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -463,5 +463,64 @@ export class FlabbergastedActorSheet extends ActorSheet {
   async _updateMemberRoles(event) {
     event.preventDefault();
     await editMembersRoles(this.actor);
+  }
+
+  async _onDropItemCreate(itemData) {
+    switch (this.actor.type) {
+      case "socialClub":
+        return await this._onDropItemCreateForSocialClub(itemData);
+      case "character":
+      case "archetype":
+        return await this._onDropItemCreateForCharacter(itemData);
+      default:
+        return;
+    }
+  }
+
+  async _onDropItemCreateForSocialClub(itemData) {
+    if (itemData.type != "clubUpgrade")
+      return;
+
+    let cancel = false;
+    if (itemData.system.minRenown > this.actor.system.renown) {
+      ui.notifications.error('FLABBERGASTED.SocialClub.Errors.Renown', { localize: true });
+      cancel = true;
+    }
+    else if (itemData.system.readies > this.actor.system.funds) {
+      ui.notifications.error('FLABBERGASTED.SocialClub.Errors.Funds', { localize: true });
+      cancel = true;
+    }
+    else if (itemData.system.extraRequirement) {
+      cancel = !(await Dialog.confirm({
+        content: `<p>The club upgrade has the following extra requirement:</p><p><strong>${itemData.system.extraRequirement}</strong></p><p>Did the Club fulfill this requirement?</p>`
+      }));
+      console.log(cancel);
+    }
+
+    console.log(cancel);
+    if (cancel)
+      return;
+
+    const speaker = ChatMessage.getSpeaker({ actor: this.actor });
+    const rollMode = game.settings.get('core', 'rollMode');
+
+    const content = await renderTemplate(clubUpgradeTemplate, {
+      clubUpgrade: itemData,
+      acquired: true
+    });
+
+    await ChatMessage.create({
+      speaker: speaker,
+      rollMode: rollMode,
+      content: content,
+    });
+
+    await this.actor.update({ "system.funds": this.actor.system.funds - itemData.system.readies });
+    return super._onDropItemCreate(itemData);
+  }
+
+  async _onDropItemCreateForCharacter(itemData) {
+    if (itemData.type != "sceneCue")
+      return;
   }
 }

@@ -35,7 +35,7 @@
     },
     "Common": {
       "Description": "Description",
-      "Readies":"Readies"
+      "Readies": "Readies"
     },
     "SocialClub": {
       "Name": "Club Name",
@@ -62,6 +62,11 @@
         "HasUsage": "Has Usage?",
         "IsUsed": "Is Used?",
         "ExtraRequirements": "Extra Requirements"
+      },
+      "NewUpgrade": "New upgrade acquired!",
+      "Errors": {
+        "Renown": "Renown does not met the minimum Renown level for this upgrade.",
+        "Funds": "Insufficient funds to purchase this upgrade."
       }
     }
   },
