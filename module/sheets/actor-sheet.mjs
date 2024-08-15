@@ -372,9 +372,14 @@ export class FlabbergastedActorSheet extends ActorSheet {
     let element = event.currentTarget;
     let field = element.dataset.field;
     let value = parseInt(element.dataset.actionValue ? element.dataset.actionValue : "0");
+    let minValue = 1;
+
+    if (element.dataset.trait == this.actor.system.archetypeTrait) {
+      minValue = 2;
+    }
 
     if (event.altKey) {
-      return this.actor.update({ [field]: (value - 1 >= 1) ? value - 1 : value });
+      return this.actor.update({ [field]: (value - 1 >= minValue) ? value - 1 : value });
     }
     else if (event.shiftKey) {
       let max = parseInt(element.dataset.actionMaxValue);
@@ -542,11 +547,13 @@ export class FlabbergastedActorSheet extends ActorSheet {
 
     let updates = {
       "system.archetype": archetype.name,
+      "system.archetypeTrait": archetype.system.primaryTrait,
       "system.readies": archetype.system.readies,
       "system.hasProfession": archetype.system.hasProfession,
       "system.profession": "",
       "system.title": "",
       "system.estate": "",
+      [`system.traits.${archetype.system.primaryTrait}`]: 2,
     };
 
     if (this.actor.img == "icons/svg/mystery-man.svg" || await Dialog.confirm({

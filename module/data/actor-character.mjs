@@ -5,7 +5,6 @@ export default class FlabbergastedCharacter extends FlabbergastedActorBase {
 
   static defineSchema() {
     const fields = foundry.data.fields;
-    const requiredInteger = { required: true, nullable: false, integer: true };
     const schema = super.defineSchema();
 
     // Iterate over trais names and create a new SchemaField for each.
@@ -21,7 +20,8 @@ export default class FlabbergastedCharacter extends FlabbergastedActorBase {
 
     schema.relationship = new fields.StringField({ required: true, blank: true });
 
-    schema.archetype = new fields.StringField({ required: false, blank: true });
+    schema.archetype = new fields.StringField({ required: false, blank: false });
+    schema.archetypeTrait = new fields.StringField({ required: false, blank: false });
 
     schema.hasProfession = new fields.BooleanField({ initial: true });
 
@@ -41,6 +41,8 @@ export default class FlabbergastedCharacter extends FlabbergastedActorBase {
     schema.socialStanding = new fields.NumberField({ ...DATA_COMMON.requiredInteger, initial: 0, min: -10, max: 10 });
 
     schema.notes = new fields.StringField({ required: true, blank: true });
+
+    schema.socialClub = new fields.StringField({ required: false, blank: false });
 
     return schema;
   }
