@@ -9,6 +9,7 @@ import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FLABBERGASTED } from './helpers/config.mjs';
 // Import DataModel classes
 import * as models from './data/_module.mjs';
+import { checkAndCreateMacro } from './helpers/endSession.mjs';
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -103,6 +104,8 @@ Handlebars.registerHelper('traitBoxes', function (max, value) {
 Hooks.once('ready', function () {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
+
+  checkAndCreateMacro();
 });
 
 /* -------------------------------------------- */

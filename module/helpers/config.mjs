@@ -1,3 +1,5 @@
+import endSessionHandler from "./endSession.mjs";
+
 export const FLABBERGASTED = {};
 
 /**
@@ -10,3 +12,5 @@ FLABBERGASTED.traits = {
   ws: 'FLABBERGASTED.Traits.Ws',
   cp: 'FLABBERGASTED.Traits.Cp',
 };
+
+FLABBERGASTED.endSessionHandler = endSessionHandler;
