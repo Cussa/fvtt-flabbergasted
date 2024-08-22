@@ -9,10 +9,38 @@ button,
 }
 
 .rollable {
+
   &:hover,
   &:focus {
     color: #000;
     text-shadow: 0 0 10px $focus;
     cursor: pointer;
+  }
+}
+
+#pause {
+  background: none;
+  animation: grow 3s infinite alternate ease-in-out;
+
+  img {
+    animation: unset;
+    content: url(../assets/helpers/pause-icon.webp);
+    opacity: 1;
+  }
+
+  figcaption {
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgb(255 255 255 / 0%));
+  }
+
+  to {
+    transform: scale(1.25);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.735));
   }
 }
