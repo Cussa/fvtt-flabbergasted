@@ -8,6 +8,6 @@ export {default as FlabbergastedArchetype} from "./actor-archetype.mjs";
 // Export Items
 export {default as FlabbergastedItemBase} from "./item-base.mjs";
 export {default as FlabbergastedItem} from "./item-item.mjs";
-export {default as FlabbergastedFeature} from "./item-feature.mjs";
+export {default as FlabbergastedFlaw} from "./item-flaw.mjs";
 export {default as FlabbergastedSceneCue} from "./item-scene-cue.mjs";
 export {default as FlabbergastedClubUpgrade} from "./item-club-upgrade.mjs";

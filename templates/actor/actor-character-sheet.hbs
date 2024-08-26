@@ -11,7 +11,7 @@
       {{#if system.socialClub}}
       <div class="info">
         <label for="socialClub" class="resource-label">{{socialClub.name}}</label>
-        <a class='rollable socialClub' title='{{localize "DOCUMENT.Delete" type='Social Club'}}'>
+        <a class='rollable socialClub' title='{{localize "DOCUMENT.Delete" type=' Social Club'}}'>
           <i class='fas fa-trash'></i>
         </a>
       </div>
@@ -56,7 +56,12 @@
         <hr class="vertical">
         <div class="flaw">
           <label for="system.flaw" class="resource-label">Flaw</label>
-          <input name="system.flaw" type="text" value="{{actor.system.flaw}}" placeholder="Flaw" />
+          {{#if flaw}}
+          <a class='rollable deleteFlaw' title='{{localize "DOCUMENT.Delete" type=' Flaw'}}'>
+            <i class='fas fa-trash'></i>
+          </a>
+          {{/if}}
+          <input type="text" value="{{flaw.name}}" placeholder="Flaw" disabled data-tooltip="{{flaw.system.description}}" />
         </div>
       </div>
     </div>

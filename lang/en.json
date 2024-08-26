@@ -71,6 +71,7 @@
     },
     "CharacterArchetypeError": "This character already have a archetype. Do you want to continue? If yes, it will clear all the information from the character. This is a destructive operation and there is no return.",
     "CharacterSocialClubError": "This character already have a social club. Do you want to continue? If yes, it will clear all the information from the character. This is a destructive operation and there is no return.",
+    "CharacterFlawError": "This character already have a flaw. Do you want to continue? If yes, it will replace the current flaw by the new one.",
     "UpdateImageArchetype": "Do you want to update the character's image to the archetype's image?"
   },
   "TYPES": {
@@ -82,7 +83,7 @@
     },
     "Item": {
       "item": "Item",
-      "feature": "Feature",
+      "flaw": "Flaw",
       "sceneCue": "Scene Cue",
       "clubUpgrade": "Club Upgrade"
     }

@@ -3,6 +3,6 @@
     "types": ["character", "npc", "socialClub", "archetype"]
   },
   "Item": {
-    "types": ["item", "feature", "sceneCue", "clubUpgrade"]
+    "types": ["sceneCue", "clubUpgrade", "flaw"]
   }
 }

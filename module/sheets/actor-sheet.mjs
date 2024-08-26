@@ -143,6 +143,10 @@ export class FlabbergastedActorSheet extends ActorSheet {
         i.canUse = i.system.availableUsage > 0 && i.system.used < i.system.availableUsage;
         sceneCues.push(i);
       }
+      else if (i.type == "flaw") {
+        i.system.description = `<p><strong>${i.name}</strong></p>${i.system.description}`;
+        context.flaw = i;
+      }
     }
 
     sceneCues = sceneCues
@@ -217,6 +221,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
     html.on('click', '.rollable.nickname', this._onNicknameClick.bind(this));
     html.on('click', '.rollable.members-roles-edit', this._updateMemberRoles.bind(this));
     html.on('click', '.rollable.socialClub', this._onDeleteSocialClub.bind(this));
+    html.on('click', '.rollable.deleteFlaw', this._onDeleteFlaw.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -527,6 +532,9 @@ export class FlabbergastedActorSheet extends ActorSheet {
   }
 
   async _onDropItemCreateForCharacter(itemData) {
+    if (itemData.type == "flaw")
+      return this._addFlaw(itemData);
+
     if (itemData.type != "sceneCue" && !Array.isArray(itemData))
       return;
 
@@ -607,5 +615,26 @@ export class FlabbergastedActorSheet extends ActorSheet {
     event.preventDefault();
     await this.actor.update({ "system.socialClub": null });
     console.log(this.actor);
+  }
+
+  async _onDeleteFlaw(event) {
+    event.preventDefault();
+    const currentFlaw = this.actor.items.filter(it => it.type == "flaw")[0];
+    currentFlaw.delete();
+  }
+
+  async _addFlaw(itemData) {
+    const currentFlaw = this.actor.items.filter(it => it.type == "flaw")[0];
+    if (currentFlaw != undefined) {
+      const confirmation = await Dialog.confirm({
+        content: game.i18n.localize("FLABBERGASTED.CharacterFlawError")
+      });
+      if (!confirmation)
+        return;
+
+      currentFlaw.delete();
+    }
+
+    return super._onDropItemCreate(itemData);
   }
 }
