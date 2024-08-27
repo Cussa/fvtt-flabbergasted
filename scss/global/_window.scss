@@ -18,6 +18,10 @@ button,
   }
 }
 
+#logo {
+  content: url(../assets/flabber-logo.webp);
+}
+
 #pause {
   background: none;
   animation: grow 3s infinite alternate ease-in-out;
