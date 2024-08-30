@@ -1,12 +1,7 @@
-<h1 style="text-align: center;">Hod Studio Publishing,<br />in collaboration with <a href="https://www.wanderers-tome.com/" target="_blank" rel="nofollow noopener">The Wanderer's Tome</a>,<br />proudly presents:</h1>
-<p style="text-align: center;"><img style="width: 70%;" src="https://raw.githubusercontent.com/Cussa/fvtt-flabbergasted/main/assets/flabbergasted-system.webp" /></p>
-<div style="text-align: center;">
-<figure>
-<figcaption>The official Flabbergasted! system for Foundry Virtual Tabletop</figcaption>
-</figure>
-</div>
+<h1 align="center">Hod Studio Publishing,<br />in collaboration with <a href="https://www.wanderers-tome.com/" target="_blank" rel="nofollow noopener">The Wanderer's Tome</a>,<br />proudly presents:</h1>
+<p  align="center"><img src="https://raw.githubusercontent.com/Cussa/fvtt-flabbergasted/main/assets/flabbergasted-system.webp" /></p>
 
-This is the official Foundry System for the "Flabbergasted" RPG, created by [The Wanderer's Tome](https://www.wanderers-tome.com/)!
+<p  align="center">This is the official Foundry System for the "Flabbergasted" RPG, created by <a href="https://www.wanderers-tome.com/" target="_blank">The Wanderer's Tome</a>!</p>
 
 The system does not contain any data for the game. You can create that, following the guide below.
 
