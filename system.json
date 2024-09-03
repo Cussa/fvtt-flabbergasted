@@ -38,7 +38,7 @@
   "packs": [],
   "packFolders": [],
   "socket": false,
-  "manifest": "https://github.com/cussa/fvtt-flabbergasted/releases/latest/download/system.json",
+  "manifest": "https://raw.githubusercontent.com/cussa/fvtt-flabbergasted/main/system.json",
   "download": "https://github.com/cussa/fvtt-flabbergasted/releases/latest/download/system.zip",
   "background": "systems/flabbergasted/assets/flabbergasted-system.webp",
   "gridDistance": 1,
