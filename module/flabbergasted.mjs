@@ -10,6 +10,7 @@ import { FLABBERGASTED } from './helpers/config.mjs';
 // Import DataModel classes
 import * as models from './data/_module.mjs';
 import { checkAndCreateMacro } from './helpers/endSession.mjs';
+import { checkAndShowGuideSetting, registerGuideSetting } from './helpers/guide.mjs';
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -73,6 +74,8 @@ Hooks.once('init', function () {
     label: 'FLABBERGASTED.SheetLabels.Item',
   });
 
+  registerGuideSetting();
+
   // Preload Handlebars templates.
   return preloadHandlebarsTemplates();
 });
@@ -101,11 +104,13 @@ Handlebars.registerHelper('traitBoxes', function (max, value) {
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
 
-Hooks.once('ready', function () {
+Hooks.once('ready', async function  () {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
 
   checkAndCreateMacro();
+
+  await checkAndShowGuideSetting();
 });
 
 /* -------------------------------------------- */
