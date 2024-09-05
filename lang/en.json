@@ -72,7 +72,12 @@
     "CharacterArchetypeError": "This character already have a archetype. Do you want to continue? If yes, it will clear all the information from the character. This is a destructive operation and there is no return.",
     "CharacterSocialClubError": "This character already have a social club. Do you want to continue? If yes, it will clear all the information from the character. This is a destructive operation and there is no return.",
     "CharacterFlawError": "This character already have a flaw. Do you want to continue? If yes, it will replace the current flaw by the new one.",
-    "UpdateImageArchetype": "Do you want to update the character's image to the archetype's image?"
+    "UpdateImageArchetype": "Do you want to update the character's image to the archetype's image?",
+    "TraitTooltip": "<p>Use \"Shift + Click\" to increase the value.</p><p>Use \"Alt/Options + Click\" to decrease the value.</p><p>Click on the Trait to roll it.</p>",
+    "StatusTooltip": "<p>Use \"Shift + Click\" to increase the value.</p><p>Use \"Alt/Options + Click\" to decrease the value.</p>",
+    "LuckyCoinTooltip": "<p>Use \"Shift + Click\" on the coin to increase the value.</p><p>Use \"Alt/Options + Click\" on the coin to decrease the value.</p>",
+    "NicknameTooltip": "<p>Use \"Click\" to mark the nickname as used, if you have one.</p><p>Use \"Alt/Options + Click\" to mark it as unused.</p>",
+    "SceneCuesTooltip":"<p>Use \"Right Click\" to edit/delete.</p><p>Use \"Click\" to use the scene cue, if you have available usages.</p>"
   },
   "TYPES": {
     "Actor": {

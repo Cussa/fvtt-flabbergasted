@@ -31,6 +31,10 @@
   </li>
   {{/each}}
 </ol> --}}
+<div class="info">
+  <label for="system.title" class="resource-label">Scene Cues <i class="fa-solid fa-circle-info" style="margin-left:5px;" data-tooltip="{{localize "FLABBERGASTED.SceneCuesTooltip"}}"></i></label>
+</div>
+<hr>
 {{#each sceneCues as |item id|}}
 <div class="scene-cue" data-item-id="{{item._id}}">
   <h2 class="{{#if item.canUse}}rollable{{/if}} item" data-roll-type="scene-cue" data-item-id="{{item._id}}">
@@ -44,9 +48,9 @@
   {{{item.system.description}}}
   {{#if item.system.hasExtraItems}}
   <div class="grid grid-3col">
-    <input type='text' name='system.extraItem.item1' value='{{system.extraItem.item1}}' data-dtype='text' disabled/>
-    <input type='text' name='system.extraItem.item2' value='{{system.extraItem.item2}}' data-dtype='text' disabled/>
-    <input type='text' name='system.extraItem.item3' value='{{system.extraItem.item3}}' data-dtype='text' disabled/>
+    <input type='text' name='system.extraItem.item1' value='{{system.extraItem.item1}}' data-dtype='text' disabled />
+    <input type='text' name='system.extraItem.item2' value='{{system.extraItem.item2}}' data-dtype='text' disabled />
+    <input type='text' name='system.extraItem.item3' value='{{system.extraItem.item3}}' data-dtype='text' disabled />
   </div>
   {{/if}}
 </div>

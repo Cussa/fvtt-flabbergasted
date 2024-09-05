@@ -1,6 +1,6 @@
 <div class="traits">
   <div class="info">
-    <label for="system.title" class="resource-label">Traits</label>
+    <label for="system.title" class="resource-label">Traits <i class="fa-solid fa-circle-info" style="margin-left:5px;" data-tooltip="{{localize "FLABBERGASTED.TraitTooltip"}}"></i></label>
   </div>
   <hr>
   <div class="values">
@@ -18,7 +18,7 @@
 <div class="grid grid-2column" style="margin-bottom: 0">
   <div class="status">
     <div class="info">
-      <label class="resource-label">Status</label>
+      <label class="resource-label">Status <i class="fa-solid fa-circle-info" style="margin-left:5px;" data-tooltip="{{localize "FLABBERGASTED.StatusTooltip"}}"></i></label>
     </div>
     <hr>
     <div class="values">
@@ -35,7 +35,7 @@
   </div>
   <div class="luck-coin">
     <div class="info">
-      <label class="resource-label">Lucky Coin</label>
+      <label class="resource-label">Lucky Coin <i class="fa-solid fa-circle-info" style="margin-left:5px;" data-tooltip="{{localize "FLABBERGASTED.LuckyCoinTooltip"}}"></i></label>
     </div>
     <hr>
     <div class="values">
@@ -56,7 +56,7 @@
   </div>
   <div class="square-box" style="margin-bottom: 0">
     <div class="info">
-      <label for="system.nickname" class="resource-label {{ifThen actor.system.nickname "rollable" ""}} nickname">Nickname</label>
+      <label for="system.nickname" class="resource-label {{ifThen actor.system.nickname "rollable" ""}} nickname" data-tooltip="{{localize "FLABBERGASTED.NicknameTooltip"}}">Nickname</label>
       <input name="system.nickname" type="text" value="{{actor.system.nickname}}" placeholder="Nickname" style="text-decoration: {{ifThen system.nicknameUsed "line-through" "none"}}" />
     </div>
   </div>
