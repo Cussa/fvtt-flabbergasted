@@ -333,27 +333,11 @@ export class FlabbergastedActorSheet extends ActorSheet {
   }
 
   _getItemContextOptions() {
-    const canEdit = function (tr) {
-      let result = false;
-      const itemId = tr.data("item-id");
-
-      if (game.user.isGM) {
-        result = true;
-      }
-      else {
-        result = this.actor.items.find(item => item._id === itemId)
-          ? true
-          : false;
-      }
-
-      return result;
-    };
-
     return [
       {
         name: "SIDEBAR.Edit",
         icon: '<i class="fas fa-edit"></i>',
-        condition: element => canEdit(element),
+        condition: _ => this.actor.isOwner,
         callback: element => {
           const itemId = element.data("itemId");
           const item = this.actor.items.get(itemId);
@@ -363,7 +347,7 @@ export class FlabbergastedActorSheet extends ActorSheet {
       {
         name: "SIDEBAR.Delete",
         icon: '<i class="fas fa-trash"></i>',
-        condition: tr => canEdit(tr),
+        condition: _ => this.actor.isOwner,
         callback: element => {
           const itemId = element.data("itemId");
           const item = this.actor.items.get(itemId);
