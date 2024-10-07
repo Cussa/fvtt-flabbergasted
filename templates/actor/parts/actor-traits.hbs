@@ -10,7 +10,7 @@
         data-action-max-value="{{item.max}}" data-trait="{{item.id}}">
         {{localize item.label}}
       </h2>
-      {{{traitBoxes item.max item.value}}}
+      {{{traitBoxes item.id item.max item.value}}}
     </div>
     {{/each}}
   </div>
@@ -23,13 +23,13 @@
     <hr>
     <div class="values">
       <h3 class="rollable status">Healthy<input type="checkbox" name="cb" class="traits" {{ifThen (eq
-          actor.system.status 1) "checked" "" }} disabled>
+          actor.system.status 1) "checked" "" }}>
       </h3>
       <h3 class="rollable status">Scuffed<input type="checkbox" name="cb" class="traits" {{ifThen (eq
-          actor.system.status 2) "checked" "" }} disabled>
+          actor.system.status 2) "checked" "" }}>
       </h3>
       <h3 class="rollable status">Injured<input type="checkbox" name="cb" class="traits" {{ifThen (eq
-          actor.system.status 3) "checked" "" }} disabled>
+          actor.system.status 3) "checked" "" }}>
       </h3>
     </div>
   </div>
@@ -40,12 +40,9 @@
     <hr>
     <div class="values">
       <img src="" class="rollable luck-coin" />
-      <h3><input type="checkbox" name="cb" class="traits" {{ifThen (gte actor.system.luckCoin 1) "checked" "" }}
-          disabled></h3>
-      <h3><input type="checkbox" name="cb" class="traits" {{ifThen (gte actor.system.luckCoin 2) "checked" "" }}
-          disabled></h3>
-      <h3><input type="checkbox" name="cb" class="traits" {{ifThen (gte actor.system.luckCoin 3) "checked" "" }}
-          disabled></h3>
+      <h3 class="rollable luck-coin"><input type="checkbox" name="cb" class="traits" {{ifThen (gte actor.system.luckCoin 1) "checked" "" }}></h3>
+      <h3 class="rollable luck-coin"><input type="checkbox" name="cb" class="traits" {{ifThen (gte actor.system.luckCoin 2) "checked" "" }}></h3>
+      <h3 class="rollable luck-coin"><input type="checkbox" name="cb" class="traits" {{ifThen (gte actor.system.luckCoin 3) "checked" "" }}></h3>
     </div>
   </div>
   <div class="square-box" style="margin-bottom: 0">

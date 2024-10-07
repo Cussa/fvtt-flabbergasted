@@ -37,10 +37,10 @@
 <hr>
 {{#each sceneCues as |item id|}}
 <div class="scene-cue" data-item-id="{{item._id}}">
-  <h2 class="{{#if item.canUse}}rollable{{/if}} item" data-roll-type="scene-cue" data-item-id="{{item._id}}">
+  <h2 class="rollable item" data-roll-type="scene-cue" data-item-id="{{item._id}}">
     {{item.name}}
     {{#each item.usages as |usage|}}<input type="checkbox" name="cb" class="scene-cue {{usage.disabled}}"
-      {{usage.checked}} disabled>{{/each}}
+      {{usage.checked}}>{{/each}}
     {{#if item.system.socialStanding}}<div style="float:right; font-size: 60%; margin-top:10px">[
       <strong>+{{localize (concat "FLABBERGASTED.Item.SceneCue.SocialStandingChange." item.system.socialStanding)}}</strong> ]
     </div>{{/if}}

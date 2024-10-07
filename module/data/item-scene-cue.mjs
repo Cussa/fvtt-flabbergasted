@@ -37,11 +37,22 @@ export default class FlabbergastedSceneCue extends FlabbergastedItemBase {
     context.socialStandingOptions = socialStandingOptions;
   }
 
-  async roll(actor) {
+  async roll(actor, eventType) {
+    const item = this.parent;
+
+    if (eventType == 1) {
+      let value = Math.min(item.system.maxUsage, item.system.availableUsage + 1);
+      return await item.update({ "system.availableUsage": value });
+    }
+    if (eventType == 2) {
+      let value = Math.max(0, item.system.availableUsage - 1);
+      let used = Math.min(item.system.used, value);
+      return await item.update({ "system.availableUsage": value, "system.used": used });
+    }
+
     if (this.used >= this.availableUsage)
       return;
 
-    const item = this.parent;
 
     // Initialize chat data.
     const speaker = ChatMessage.getSpeaker({ actor: actor });

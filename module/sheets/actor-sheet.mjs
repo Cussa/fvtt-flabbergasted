@@ -140,7 +140,6 @@ export class FlabbergastedActorSheet extends ActorSheet {
 
           i.usages.push(usage);
         }
-        i.canUse = i.system.availableUsage > 0 && i.system.used < i.system.availableUsage;
         sceneCues.push(i);
       }
       else if (i.type == "flaw") {
@@ -307,7 +306,12 @@ export class FlabbergastedActorSheet extends ActorSheet {
         return item.roll();
       }
       if (dataset.rollType == 'scene-cue' || dataset.rollType == "club-upgrade") {
-        return await item.system.roll(this.actor);
+        let eventType = 0;
+        if (event.shiftKey)
+          eventType = 1;
+        else if (event.altKey)
+          eventType = 2;
+        return await item.system.roll(this.actor, eventType);
       }
 
     }

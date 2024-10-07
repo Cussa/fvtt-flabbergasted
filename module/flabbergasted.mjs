@@ -89,13 +89,14 @@ Handlebars.registerHelper('toLowerCase', function (str) {
   return str.toLowerCase();
 });
 
-Handlebars.registerHelper('traitBoxes', function (max, value) {
+Handlebars.registerHelper('traitBoxes', function (id, max, value) {
   let accum = '';
   for (let i = 1; i <= 8; ++i) {
     const classDisabled = i > max ? "disabled" : "";
     const checked = i <= value ? "checked" : "";
-    accum += `<input type="checkbox" name="cb" class="traits ${classDisabled}"
-      ${checked} disabled>`;
+    accum += `<input type="checkbox" name="cb" class="traits rollable trait ${classDisabled}"
+      ${checked} data-field="system.traits.${id}" data-action-value="${value}"
+        data-action-max-value="${max}" data-trait="${id}">`;
   }
   return accum;
 });
